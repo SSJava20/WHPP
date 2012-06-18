@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPriceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPriceLabel_priceId}"/>
+                    <h:outputText value="#{priceController.selected.priceId}" title="#{bundle.ViewPriceTitle_priceId}"/>
+                    <h:outputText value="#{bundle.ViewPriceLabel_value}"/>
+                    <h:outputText value="#{priceController.selected.value}" title="#{bundle.ViewPriceTitle_value}"/>
+                    <h:outputText value="#{bundle.ViewPriceLabel_actDate}"/>
+                    <h:outputText value="#{priceController.selected.actDate}" title="#{bundle.ViewPriceTitle_actDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPriceLabel_productId}"/>
+                    <h:outputText value="#{priceController.selected.productId}" title="#{bundle.ViewPriceTitle_productId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{priceController.destroyAndView}" value="#{bundle.ViewPriceDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPriceEditLink}"/>
+                <br />
+                <h:commandLink action="#{priceController.prepareCreate}" value="#{bundle.ViewPriceCreateLink}" />
+                <br />
+                <h:commandLink action="#{priceController.prepareList}" value="#{bundle.ViewPriceShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPriceIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

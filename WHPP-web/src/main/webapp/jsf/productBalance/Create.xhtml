@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductBalanceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProductBalanceLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{productBalanceController.selected.id}" title="#{bundle.CreateProductBalanceTitle_id}" required="true" requiredMessage="#{bundle.CreateProductBalanceRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateProductBalanceLabel_balance}" for="balance" />
+                    <h:inputText id="balance" value="#{productBalanceController.selected.balance}" title="#{bundle.CreateProductBalanceTitle_balance}" required="true" requiredMessage="#{bundle.CreateProductBalanceRequiredMessage_balance}"/>
+                    <h:outputLabel value="#{bundle.CreateProductBalanceLabel_reserved}" for="reserved" />
+                    <h:inputText id="reserved" value="#{productBalanceController.selected.reserved}" title="#{bundle.CreateProductBalanceTitle_reserved}" required="true" requiredMessage="#{bundle.CreateProductBalanceRequiredMessage_reserved}"/>
+                    <h:outputLabel value="#{bundle.CreateProductBalanceLabel_warehouseId}" for="warehouseId" />
+                    <h:selectOneMenu id="warehouseId" value="#{productBalanceController.selected.warehouseId}" title="#{bundle.CreateProductBalanceTitle_warehouseId}" required="true" requiredMessage="#{bundle.CreateProductBalanceRequiredMessage_warehouseId}">
+                        <f:selectItems value="#{warehouseController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProductBalanceLabel_product}" for="product" />
+                    <h:selectOneMenu id="product" value="#{productBalanceController.selected.product}" title="#{bundle.CreateProductBalanceTitle_product}" required="true" requiredMessage="#{bundle.CreateProductBalanceRequiredMessage_product}">
+                        <f:selectItems value="#{productController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productBalanceController.create}" value="#{bundle.CreateProductBalanceSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{productBalanceController.prepareList}" value="#{bundle.CreateProductBalanceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProductBalanceIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

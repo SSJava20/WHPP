@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTicketItemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTicketItemLabel_id}"/>
+                    <h:outputText value="#{ticketItemController.selected.id}" title="#{bundle.ViewTicketItemTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTicketItemLabel_qty}"/>
+                    <h:outputText value="#{ticketItemController.selected.qty}" title="#{bundle.ViewTicketItemTitle_qty}"/>
+                    <h:outputText value="#{bundle.ViewTicketItemLabel_product}"/>
+                    <h:outputText value="#{ticketItemController.selected.product}" title="#{bundle.ViewTicketItemTitle_product}"/>
+                    <h:outputText value="#{bundle.ViewTicketItemLabel_ticketId}"/>
+                    <h:outputText value="#{ticketItemController.selected.ticketId}" title="#{bundle.ViewTicketItemTitle_ticketId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ticketItemController.destroyAndView}" value="#{bundle.ViewTicketItemDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTicketItemEditLink}"/>
+                <br />
+                <h:commandLink action="#{ticketItemController.prepareCreate}" value="#{bundle.ViewTicketItemCreateLink}" />
+                <br />
+                <h:commandLink action="#{ticketItemController.prepareList}" value="#{bundle.ViewTicketItemShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTicketItemIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCategoryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"/>
+			</h:panelGroup>
+            <h:form>
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.ViewCategoryTitle}
+					</f:facet>
+					<h:outputText value="#{bundle.ViewCategoryLabel_categoryId}"/>
+                    <h:outputText value="#{categoryController.selected.categoryId}" title="#{bundle.ViewCategoryTitle_categoryId}"/>
+                    <h:outputText value="#{bundle.ViewCategoryLabel_name}"/>
+                    <h:outputText value="#{categoryController.selected.name}" title="#{bundle.ViewCategoryTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewCategoryLabel_description}"/>
+                    <h:outputText value="#{categoryController.selected.description}" title="#{bundle.ViewCategoryTitle_description}"/>
+					<f:facet name="footer">
+						<p:commandButton action="#{categoryController.destroyAndView}" value="#{bundle.ViewCategoryDestroyLink}" ajax="false"/>
+						<p:button outcome="Edit" value="#{bundle.ViewCategoryEditLink}"/>
+						<p:commandButton action="#{categoryController.prepareCreate}" value="#{bundle.ViewCategoryCreateLink}"  ajax="false"/>
+						<p:commandButton action="#{categoryController.prepareList}" value="#{bundle.ViewCategoryShowAllLink}" ajax="false"/>
+						<p:button outcome="/index" value="#{bundle.ViewCategoryIndexLink}"/>
+					</f:facet>
+				</p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

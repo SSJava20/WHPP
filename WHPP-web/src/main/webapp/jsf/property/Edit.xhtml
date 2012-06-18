@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPropertyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPropertyLabel_propertyId}" for="propertyId" />
+                    <h:inputText id="propertyId" value="#{propertyController.selected.propertyId}" title="#{bundle.EditPropertyTitle_propertyId}" required="true" requiredMessage="#{bundle.EditPropertyRequiredMessage_propertyId}"/>
+                    <h:outputLabel value="#{bundle.EditPropertyLabel_pname}" for="pname" />
+                    <h:inputText id="pname" value="#{propertyController.selected.pname}" title="#{bundle.EditPropertyTitle_pname}" required="true" requiredMessage="#{bundle.EditPropertyRequiredMessage_pname}"/>
+                    <h:outputLabel value="#{bundle.EditPropertyLabel_pvalue}" for="pvalue" />
+                    <h:inputText id="pvalue" value="#{propertyController.selected.pvalue}" title="#{bundle.EditPropertyTitle_pvalue}" required="true" requiredMessage="#{bundle.EditPropertyRequiredMessage_pvalue}"/>
+                    <h:outputLabel value="#{bundle.EditPropertyLabel_categoryId}" for="categoryId" />
+                    <h:selectOneMenu id="categoryId" value="#{propertyController.selected.categoryId}" title="#{bundle.EditPropertyTitle_categoryId}" required="true" requiredMessage="#{bundle.EditPropertyRequiredMessage_categoryId}">
+                        <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{propertyController.update}" value="#{bundle.EditPropertySaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPropertyViewLink}"/>
+                <br />
+                <h:commandLink action="#{propertyController.prepareList}" value="#{bundle.EditPropertyShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPropertyIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

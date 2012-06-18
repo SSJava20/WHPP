@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewWorktimeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewWorktimeLabel_id}"/>
+                    <h:outputText value="#{worktimeController.selected.id}" title="#{bundle.ViewWorktimeTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewWorktimeLabel_intime}"/>
+                    <h:outputText value="#{worktimeController.selected.intime}" title="#{bundle.ViewWorktimeTitle_intime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewWorktimeLabel_outtime}"/>
+                    <h:outputText value="#{worktimeController.selected.outtime}" title="#{bundle.ViewWorktimeTitle_outtime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewWorktimeLabel_empId}"/>
+                    <h:outputText value="#{worktimeController.selected.empId}" title="#{bundle.ViewWorktimeTitle_empId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{worktimeController.destroyAndView}" value="#{bundle.ViewWorktimeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewWorktimeEditLink}"/>
+                <br />
+                <h:commandLink action="#{worktimeController.prepareCreate}" value="#{bundle.ViewWorktimeCreateLink}" />
+                <br />
+                <h:commandLink action="#{worktimeController.prepareList}" value="#{bundle.ViewWorktimeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewWorktimeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

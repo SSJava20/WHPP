@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePropertyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePropertyLabel_propertyId}" for="propertyId" />
+                    <h:inputText id="propertyId" value="#{propertyController.selected.propertyId}" title="#{bundle.CreatePropertyTitle_propertyId}" required="true" requiredMessage="#{bundle.CreatePropertyRequiredMessage_propertyId}"/>
+                    <h:outputLabel value="#{bundle.CreatePropertyLabel_pname}" for="pname" />
+                    <h:inputText id="pname" value="#{propertyController.selected.pname}" title="#{bundle.CreatePropertyTitle_pname}" required="true" requiredMessage="#{bundle.CreatePropertyRequiredMessage_pname}"/>
+                    <h:outputLabel value="#{bundle.CreatePropertyLabel_pvalue}" for="pvalue" />
+                    <h:inputText id="pvalue" value="#{propertyController.selected.pvalue}" title="#{bundle.CreatePropertyTitle_pvalue}" required="true" requiredMessage="#{bundle.CreatePropertyRequiredMessage_pvalue}"/>
+                    <h:outputLabel value="#{bundle.CreatePropertyLabel_categoryId}" for="categoryId" />
+                    <h:selectOneMenu id="categoryId" value="#{propertyController.selected.categoryId}" title="#{bundle.CreatePropertyTitle_categoryId}" required="true" requiredMessage="#{bundle.CreatePropertyRequiredMessage_categoryId}">
+                        <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{propertyController.create}" value="#{bundle.CreatePropertySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{propertyController.prepareList}" value="#{bundle.CreatePropertyShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePropertyIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

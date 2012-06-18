@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePriceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePriceLabel_priceId}" for="priceId" />
+                    <h:inputText id="priceId" value="#{priceController.selected.priceId}" title="#{bundle.CreatePriceTitle_priceId}" required="true" requiredMessage="#{bundle.CreatePriceRequiredMessage_priceId}"/>
+                    <h:outputLabel value="#{bundle.CreatePriceLabel_value}" for="value" />
+                    <h:inputText id="value" value="#{priceController.selected.value}" title="#{bundle.CreatePriceTitle_value}" required="true" requiredMessage="#{bundle.CreatePriceRequiredMessage_value}"/>
+                    <h:outputLabel value="#{bundle.CreatePriceLabel_actDate}" for="actDate" />
+                    <h:inputText id="actDate" value="#{priceController.selected.actDate}" title="#{bundle.CreatePriceTitle_actDate}" required="true" requiredMessage="#{bundle.CreatePriceRequiredMessage_actDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePriceLabel_productId}" for="productId" />
+                    <h:selectOneMenu id="productId" value="#{priceController.selected.productId}" title="#{bundle.CreatePriceTitle_productId}" required="true" requiredMessage="#{bundle.CreatePriceRequiredMessage_productId}">
+                        <f:selectItems value="#{productController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{priceController.create}" value="#{bundle.CreatePriceSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{priceController.prepareList}" value="#{bundle.CreatePriceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePriceIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

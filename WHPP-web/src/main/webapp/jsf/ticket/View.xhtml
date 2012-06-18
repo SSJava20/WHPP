@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTicketTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTicketLabel_id}"/>
+                    <h:outputText value="#{ticketController.selected.id}" title="#{bundle.ViewTicketTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTicketLabel_ticketNum}"/>
+                    <h:outputText value="#{ticketController.selected.ticketNum}" title="#{bundle.ViewTicketTitle_ticketNum}"/>
+                    <h:outputText value="#{bundle.ViewTicketLabel_clientId}"/>
+                    <h:outputText value="#{ticketController.selected.clientId}" title="#{bundle.ViewTicketTitle_clientId}"/>
+                    <h:outputText value="#{bundle.ViewTicketLabel_status}"/>
+                    <h:outputText value="#{ticketController.selected.status}" title="#{bundle.ViewTicketTitle_status}"/>
+                    <h:outputText value="#{bundle.ViewTicketLabel_type}"/>
+                    <h:outputText value="#{ticketController.selected.type}" title="#{bundle.ViewTicketTitle_type}"/>
+                    <h:outputText value="#{bundle.ViewTicketLabel_createTime}"/>
+                    <h:outputText value="#{ticketController.selected.createTime}" title="#{bundle.ViewTicketTitle_createTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTicketLabel_updateTime}"/>
+                    <h:outputText value="#{ticketController.selected.updateTime}" title="#{bundle.ViewTicketTitle_updateTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTicketLabel_sourceWh}"/>
+                    <h:outputText value="#{ticketController.selected.sourceWh}" title="#{bundle.ViewTicketTitle_sourceWh}"/>
+                    <h:outputText value="#{bundle.ViewTicketLabel_usrUpdated}"/>
+                    <h:outputText value="#{ticketController.selected.usrUpdated}" title="#{bundle.ViewTicketTitle_usrUpdated}"/>
+                    <h:outputText value="#{bundle.ViewTicketLabel_usrCreated}"/>
+                    <h:outputText value="#{ticketController.selected.usrCreated}" title="#{bundle.ViewTicketTitle_usrCreated}"/>
+                    <h:outputText value="#{bundle.ViewTicketLabel_routeId}"/>
+                    <h:outputText value="#{ticketController.selected.routeId}" title="#{bundle.ViewTicketTitle_routeId}"/>
+                    <h:outputText value="#{bundle.ViewTicketLabel_destWh}"/>
+                    <h:outputText value="#{ticketController.selected.destWh}" title="#{bundle.ViewTicketTitle_destWh}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ticketController.destroyAndView}" value="#{bundle.ViewTicketDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTicketEditLink}"/>
+                <br />
+                <h:commandLink action="#{ticketController.prepareCreate}" value="#{bundle.ViewTicketCreateLink}" />
+                <br />
+                <h:commandLink action="#{ticketController.prepareList}" value="#{bundle.ViewTicketShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTicketIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

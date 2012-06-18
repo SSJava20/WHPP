@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditVacationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditVacationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{vacationController.selected.id}" title="#{bundle.EditVacationTitle_id}" required="true" requiredMessage="#{bundle.EditVacationRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditVacationLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{vacationController.selected.type}" title="#{bundle.EditVacationTitle_type}" required="true" requiredMessage="#{bundle.EditVacationRequiredMessage_type}"/>
+                    <h:outputLabel value="#{bundle.EditVacationLabel_dateStart}" for="dateStart" />
+                    <h:inputText id="dateStart" value="#{vacationController.selected.dateStart}" title="#{bundle.EditVacationTitle_dateStart}" required="true" requiredMessage="#{bundle.EditVacationRequiredMessage_dateStart}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVacationLabel_dateFinish}" for="dateFinish" />
+                    <h:inputText id="dateFinish" value="#{vacationController.selected.dateFinish}" title="#{bundle.EditVacationTitle_dateFinish}" required="true" requiredMessage="#{bundle.EditVacationRequiredMessage_dateFinish}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVacationLabel_dateAdd}" for="dateAdd" />
+                    <h:inputText id="dateAdd" value="#{vacationController.selected.dateAdd}" title="#{bundle.EditVacationTitle_dateAdd}" required="true" requiredMessage="#{bundle.EditVacationRequiredMessage_dateAdd}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVacationLabel_empId}" for="empId" />
+                    <h:selectOneMenu id="empId" value="#{vacationController.selected.empId}" title="#{bundle.EditVacationTitle_empId}" required="true" requiredMessage="#{bundle.EditVacationRequiredMessage_empId}">
+                        <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditVacationLabel_usrAdd}" for="usrAdd" />
+                    <h:selectOneMenu id="usrAdd" value="#{vacationController.selected.usrAdd}" title="#{bundle.EditVacationTitle_usrAdd}" required="true" requiredMessage="#{bundle.EditVacationRequiredMessage_usrAdd}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{vacationController.update}" value="#{bundle.EditVacationSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditVacationViewLink}"/>
+                <br />
+                <h:commandLink action="#{vacationController.prepareList}" value="#{bundle.EditVacationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditVacationIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

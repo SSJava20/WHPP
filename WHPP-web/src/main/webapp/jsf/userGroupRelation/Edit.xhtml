@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUserGroupRelationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUserGroupRelationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{userGroupRelationController.selected.id}" title="#{bundle.EditUserGroupRelationTitle_id}" required="true" requiredMessage="#{bundle.EditUserGroupRelationRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditUserGroupRelationLabel_userid}" for="userid" />
+                    <h:selectOneMenu id="userid" value="#{userGroupRelationController.selected.userid}" title="#{bundle.EditUserGroupRelationTitle_userid}" required="true" requiredMessage="#{bundle.EditUserGroupRelationRequiredMessage_userid}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditUserGroupRelationLabel_groupid}" for="groupid" />
+                    <h:selectOneMenu id="groupid" value="#{userGroupRelationController.selected.groupid}" title="#{bundle.EditUserGroupRelationTitle_groupid}" required="true" requiredMessage="#{bundle.EditUserGroupRelationRequiredMessage_groupid}">
+                        <f:selectItems value="#{userGroupController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{userGroupRelationController.update}" value="#{bundle.EditUserGroupRelationSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUserGroupRelationViewLink}"/>
+                <br />
+                <h:commandLink action="#{userGroupRelationController.prepareList}" value="#{bundle.EditUserGroupRelationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditUserGroupRelationIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,19 @@
+
+
+open visual studio console and run next command:
+
+
+http://msdn.microsoft.com/en-us/library/bfsktky3(v=vs.80).aspx
+makecert -r -pe -n "CN=SH PP SynteZ" -b 05/26/2012 -e 01/01/2017 -nscp -sky exchange -sv <path>\WHPP.pvk  <path>\WHPP.cer -ss My
+
+
+
+http://msdn.microsoft.com/en-us/library/f657tk8f(v=vs.80).aspx
+
+cert2spc <path>\WHPP.cer <path>WHPP.spc
+
+
+http://www.source-code.biz/snippets/vbasic/3.htm
+pvkimprt -pfx <path>\WHPP.spc <path>\WHPP.pvk
+
+Install created certificato to Personal storage

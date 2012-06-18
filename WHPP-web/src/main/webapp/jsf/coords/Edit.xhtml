@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCoordsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup  layout="block" >
+                <p:messages id="messages" showDetail="true" autoUpdate="true"/>
+            </h:panelGroup>
+
+            <h:form>
+                <p:panelGrid>
+
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">#{bundle.CreateCoordsTitle}</p:column>
+						</p:row>
+					</f:facet>
+
+
+
+					<p:row>
+						<p:column >
+							<h:outputLabel value="#{bundle.CreateCoordsLabel_latitude}" for="latitude" />
+						</p:column>
+						<p:column>
+							<p:inputText id="latitude" value="#{coordsController.selected.latitude}" title="#{bundle.CreateCoordsTitle_latitude}" required="true" requiredMessage="#{bundle.CreateCoordsRequiredMessage_latitude}"/>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column >
+							<h:outputLabel value="#{bundle.CreateCoordsLabel_longitude}" for="longitude" />
+						</p:column>
+						<p:column>
+							<p:inputText id="longitude" value="#{coordsController.selected.longitude}" title="#{bundle.CreateCoordsTitle_longitude}" required="true" requiredMessage="#{bundle.CreateCoordsRequiredMessage_longitude}"/>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="2" style="text-align: center">
+							<p:commandButton type="button" icon="ui-icon-pin-s" value="Show Map" onclick="dlg.show()" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column >
+							<h:outputLabel value="#{bundle.CreateCoordsLabel_address}" for="address" />
+						</p:column>
+						<p:column>
+							<p:inputText id="address" value="#{coordsController.selected.address}" title="#{bundle.CreateCoordsTitle_address}" required="true" requiredMessage="#{bundle.CreateCoordsRequiredMessage_address}"/>
+						</p:column>
+					</p:row>
+
+
+					<f:facet name="footer">
+						<p:row>
+							<p:column colspan="2">
+								<p:commandButton action="#{coordsController.update}" value="#{bundle.EditClientSaveLink}" ajax="false"/>
+								<p:button outcome="View" value="#{bundle.EditClientViewLink}"/>
+								<p:commandButton action="#{coordsController.prepareList}" value="#{bundle.EditClientShowAllLink}" immediate="true" ajax="false"/>
+								<p:button outcome="/index" value="#{bundle.EditClientIndexLink}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+
+				</p:panelGrid> 
+
+				<p:dialog widgetVar="dlg" width="625" height="400" modal="true">
+					<p:gmap center="#{coordsController.latlng}" zoom="15" type="HYBRID"
+							style="width:600px;height:400px" widgetVar="mymap">
+						<p:ajax event="pointSelect" listener="#{coordsController.onPointSelect}" update="latitude, longitude" />
+					</p:gmap>
+				</p:dialog>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCoordsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"/>
+			</h:panelGroup>
+            <h:form>
+                <p:panelGrid >
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">#{bundle.ViewCoordsTitle}</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column >
+							<h:outputText value="#{bundle.ViewCoordsLabel_id}"/>
+						</p:column>
+						<p:column>
+							<h:outputText value="#{coordsController.selected.id}" title="#{bundle.ViewCoordsTitle_id}"/>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column >
+							<h:outputText value="#{bundle.ViewCoordsLabel_latitude}"/>
+						</p:column>
+						<p:column>
+							<h:outputText value="#{coordsController.selected.latitude}" title="#{bundle.ViewCoordsTitle_latitude}"/>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column >
+							<h:outputText value="#{bundle.ViewCoordsLabel_longitude}"/>
+						</p:column>
+						<p:column>
+							<h:outputText value="#{coordsController.selected.longitude}" title="#{bundle.ViewCoordsTitle_longitude}"/>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column >
+							<h:outputText value="#{bundle.ViewCoordsLabel_address}"/>
+						</p:column>
+						<p:column>
+							<h:outputText value="#{coordsController.selected.address}" title="#{bundle.ViewCoordsTitle_address}"/>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="2" style="text-align: center">
+							<p:gmap center="#{coordsController.latlng}" zoom="15" type="HYBRID" style="width:500px;height:350px" />
+						</p:column>
+					</p:row>
+
+                    <h:outputText value="#{bundle.ViewCoordsLabel_address}"/>
+                    <h:outputText value="#{coordsController.selected.address}" title="#{bundle.ViewCoordsTitle_address}"/>
+					<f:facet name="footer">
+						<p:row>
+							<p:column colspan="2">
+								<p:commandButton action="#{coordsController.destroyAndView}" value="#{bundle.ViewCoordsDestroyLink}" ajax="false"/>
+								<p:button outcome="Edit" value="#{bundle.ViewCoordsEditLink}"/>
+								<p:commandButton action="#{coordsController.prepareCreate}" value="#{bundle.ViewCoordsCreateLink}"  ajax="false"/>
+								<p:commandButton action="#{coordsController.prepareList}" value="#{bundle.ViewCoordsShowAllLink}" ajax="false"/>
+								<p:button outcome="/index" value="#{bundle.ViewCoordsIndexLink}"/>
+							</p:column>
+						</p:row>
+					</f:facet>
+				</p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTicketTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+			<h:form styleClass="jsfcrud_list_form">
+				<h:panelGroup id="messagePanel" layout="block">
+					<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+				</h:panelGroup>
+				<h:outputText escape="false" value="#{bundle.ListTicketEmpty}" rendered="#{ticketController.items.rowCount == 0}"/>
+				<h:panelGroup rendered="#{ticketController.items.rowCount > 0}">
+					<h:outputText value="#{ticketController.pagination.pageFirstItem + 1}..#{ticketController.pagination.pageLastItem + 1}/#{ticketController.pagination.itemsCount}"/>&nbsp;
+					<h:commandLink action="#{ticketController.previous}" value="#{bundle.Previous} #{ticketController.pagination.pageSize}" rendered="#{ticketController.pagination.hasPreviousPage}"/>&nbsp;
+					<h:commandLink action="#{ticketController.next}" value="#{bundle.Next} #{ticketController.pagination.pageSize}" rendered="#{ticketController.pagination.hasNextPage}"/>&nbsp;
+					<h:dataTable value="#{ticketController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_id}"/>
+							</f:facet>
+							<h:outputText value="#{item.id}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_ticketNum}"/>
+							</f:facet>
+							<h:outputText value="#{item.ticketNum}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_clientId}"/>
+							</f:facet>
+							<h:outputText value="#{item.clientId}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_status}"/>
+							</f:facet>
+							<h:outputText value="#{item.status}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_type}"/>
+							</f:facet>
+							<h:outputText value="#{item.type}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_createTime}"/>
+							</f:facet>
+							<h:outputText value="#{item.createTime}">
+								<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_updateTime}"/>
+							</f:facet>
+							<h:outputText value="#{item.updateTime}">
+								<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_sourceWh}"/>
+							</f:facet>
+							<h:outputText value="#{item.sourceWh}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_usrUpdated}"/>
+							</f:facet>
+							<h:outputText value="#{item.usrUpdated}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_usrCreated}"/>
+							</f:facet>
+							<h:outputText value="#{item.usrCreated}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_routeId}"/>
+							</f:facet>
+							<h:outputText value="#{item.routeId}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListTicketTitle_destWh}"/>
+							</f:facet>
+							<h:outputText value="#{item.destWh}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="&nbsp;"/>
+							</f:facet>
+							<h:commandLink action="#{ticketController.prepareView}" value="#{bundle.ListTicketViewLink}"/>
+							<h:outputText value=" "/>
+							<h:commandLink action="#{ticketController.prepareEdit}" value="#{bundle.ListTicketEditLink}"/>
+							<h:outputText value=" "/>
+							<h:commandLink action="#{ticketController.destroy}" value="#{bundle.ListTicketDestroyLink}"/>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<br />
+				<h:commandLink action="#{ticketController.prepareCreate}" value="#{bundle.ListTicketCreateLink}"/>
+				<br />
+				<br />
+				<h:link outcome="/index" value="#{bundle.ListTicketIndexLink}"/>
+			</h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

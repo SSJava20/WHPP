@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRoutepointTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRoutepointLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{routepointController.selected.id}" title="#{bundle.EditRoutepointTitle_id}" required="true" requiredMessage="#{bundle.EditRoutepointRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditRoutepointLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{routepointController.selected.name}" title="#{bundle.EditRoutepointTitle_name}" required="true" requiredMessage="#{bundle.EditRoutepointRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditRoutepointLabel_routeId}" for="routeId" />
+                    <h:selectOneMenu id="routeId" value="#{routepointController.selected.routeId}" title="#{bundle.EditRoutepointTitle_routeId}" required="true" requiredMessage="#{bundle.EditRoutepointRequiredMessage_routeId}">
+                        <f:selectItems value="#{routeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRoutepointLabel_coordsId}" for="coordsId" />
+                    <h:selectOneMenu id="coordsId" value="#{routepointController.selected.coordsId}" title="#{bundle.EditRoutepointTitle_coordsId}" required="true" requiredMessage="#{bundle.EditRoutepointRequiredMessage_coordsId}">
+                        <f:selectItems value="#{coordsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{routepointController.update}" value="#{bundle.EditRoutepointSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRoutepointViewLink}"/>
+                <br />
+                <h:commandLink action="#{routepointController.prepareList}" value="#{bundle.EditRoutepointShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRoutepointIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

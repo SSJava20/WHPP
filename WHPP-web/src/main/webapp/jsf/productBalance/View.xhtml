@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProductBalanceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProductBalanceLabel_id}"/>
+                    <h:outputText value="#{productBalanceController.selected.id}" title="#{bundle.ViewProductBalanceTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProductBalanceLabel_balance}"/>
+                    <h:outputText value="#{productBalanceController.selected.balance}" title="#{bundle.ViewProductBalanceTitle_balance}"/>
+                    <h:outputText value="#{bundle.ViewProductBalanceLabel_reserved}"/>
+                    <h:outputText value="#{productBalanceController.selected.reserved}" title="#{bundle.ViewProductBalanceTitle_reserved}"/>
+                    <h:outputText value="#{bundle.ViewProductBalanceLabel_warehouseId}"/>
+                    <h:outputText value="#{productBalanceController.selected.warehouseId}" title="#{bundle.ViewProductBalanceTitle_warehouseId}"/>
+                    <h:outputText value="#{bundle.ViewProductBalanceLabel_product}"/>
+                    <h:outputText value="#{productBalanceController.selected.product}" title="#{bundle.ViewProductBalanceTitle_product}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productBalanceController.destroyAndView}" value="#{bundle.ViewProductBalanceDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProductBalanceEditLink}"/>
+                <br />
+                <h:commandLink action="#{productBalanceController.prepareCreate}" value="#{bundle.ViewProductBalanceCreateLink}" />
+                <br />
+                <h:commandLink action="#{productBalanceController.prepareList}" value="#{bundle.ViewProductBalanceShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProductBalanceIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

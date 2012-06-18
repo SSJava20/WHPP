@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPositionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+			<h:form styleClass="jsfcrud_list_form">
+				<h:panelGroup id="messagePanel" layout="block">
+					<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+				</h:panelGroup>
+				<h:outputText escape="false" value="#{bundle.ListPositionEmpty}" rendered="#{positionController.items.rowCount == 0}"/>
+				<h:panelGroup rendered="#{positionController.items.rowCount > 0}">
+					<h:outputText value="#{positionController.pagination.pageFirstItem + 1}..#{positionController.pagination.pageLastItem + 1}/#{positionController.pagination.itemsCount}"/>&nbsp;
+					<h:commandLink action="#{positionController.previous}" value="#{bundle.Previous} #{positionController.pagination.pageSize}" rendered="#{positionController.pagination.hasPreviousPage}"/>&nbsp;
+					<h:commandLink action="#{positionController.next}" value="#{bundle.Next} #{positionController.pagination.pageSize}" rendered="#{positionController.pagination.hasNextPage}"/>&nbsp;
+					<h:dataTable value="#{positionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListPositionTitle_id}"/>
+							</f:facet>
+							<h:outputText value="#{item.id}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListPositionTitle_name}"/>
+							</f:facet>
+							<h:outputText value="#{item.name}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListPositionTitle_description}"/>
+							</f:facet>
+							<h:outputText value="#{item.description}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="&nbsp;"/>
+							</f:facet>
+							<h:commandLink action="#{positionController.prepareView}" value="#{bundle.ListPositionViewLink}"/>
+							<h:outputText value=" "/>
+							<h:commandLink action="#{positionController.prepareEdit}" value="#{bundle.ListPositionEditLink}"/>
+							<h:outputText value=" "/>
+							<h:commandLink action="#{positionController.destroy}" value="#{bundle.ListPositionDestroyLink}"/>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<br />
+				<h:commandLink action="#{positionController.prepareCreate}" value="#{bundle.ListPositionCreateLink}"/>
+				<br />
+				<br />
+				<h:link outcome="/index" value="#{bundle.ListPositionIndexLink}"/>
+			</h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

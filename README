@@ -1,0 +1,9 @@
+You must : 
+
+1 - replace WHPP\WHPP-ejb\src\main\resources\META-INF\persistence.xml to your real  datasource in
+<jta-data-source>jdbc/__default</jta-data-source>
+
+2 - set Table Generation Strategy to "Drop and create" in WHPP\WHPP-ejb\src\main\resources\META-INF\persistence.xml design
+
+Ñïåöèàëüíî äëÿ Âëàäà : 
+Â "ÈÄÅÅ" ÏÎ ÈÄÅÈ ĞÀÁÎÒÀÒÜ ÍÅ ÁÓÄÅÒ !

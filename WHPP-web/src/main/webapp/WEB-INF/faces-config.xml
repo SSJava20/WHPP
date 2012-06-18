@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <application>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+    <navigation-rule>
+        <from-view-id>/jsf/user/List.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>View</from-outcome>
+            <to-view-id>/jsf/user/View.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Create</from-outcome>
+            <to-view-id>/jsf/user/Create.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Edit</from-outcome>
+            <to-view-id>/jsf/user/Edit.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

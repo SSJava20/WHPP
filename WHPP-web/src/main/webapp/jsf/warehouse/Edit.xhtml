@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditWarehouseTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditWarehouseLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{warehouseController.selected.id}" title="#{bundle.EditWarehouseTitle_id}" required="true" requiredMessage="#{bundle.EditWarehouseRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditWarehouseLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{warehouseController.selected.name}" title="#{bundle.EditWarehouseTitle_name}" required="true" requiredMessage="#{bundle.EditWarehouseRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditWarehouseLabel_coords}" for="coords" />
+                    <h:selectOneMenu id="coords" value="#{warehouseController.selected.coords}" title="#{bundle.EditWarehouseTitle_coords}" required="true" requiredMessage="#{bundle.EditWarehouseRequiredMessage_coords}">
+                        <f:selectItems value="#{coordsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{warehouseController.update}" value="#{bundle.EditWarehouseSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditWarehouseViewLink}"/>
+                <br />
+                <h:commandLink action="#{warehouseController.prepareList}" value="#{bundle.EditWarehouseShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditWarehouseIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,27 +15,24 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.ViewPositionTitle}
+					</f:facet>
                     <h:outputText value="#{bundle.ViewPositionLabel_id}"/>
                     <h:outputText value="#{positionController.selected.id}" title="#{bundle.ViewPositionTitle_id}"/>
                     <h:outputText value="#{bundle.ViewPositionLabel_name}"/>
                     <h:outputText value="#{positionController.selected.name}" title="#{bundle.ViewPositionTitle_name}"/>
                     <h:outputText value="#{bundle.ViewPositionLabel_description}"/>
                     <h:outputText value="#{positionController.selected.description}" title="#{bundle.ViewPositionTitle_description}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{positionController.destroyAndView}" value="#{bundle.ViewPositionDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewPositionEditLink}"/>
-                <br />
-                <h:commandLink action="#{positionController.prepareCreate}" value="#{bundle.ViewPositionCreateLink}" />
-                <br />
-                <h:commandLink action="#{positionController.prepareList}" value="#{bundle.ViewPositionShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewPositionIndexLink}"/>
-
+					<f:facet name="footer">
+						<p:commandButton action="#{positionController.destroyAndView}" value="#{bundle.ViewPositionDestroyLink}" ajax="false"/>
+						<p:button outcome="Edit" value="#{bundle.ViewPositionEditLink}"/>
+						<p:commandButton action="#{positionController.prepareCreate}" value="#{bundle.ViewPositionCreateLink}"  ajax="false"/>
+						<p:commandButton action="#{positionController.prepareList}" value="#{bundle.ViewPositionShowAllLink}" ajax="false"/>
+						<p:button outcome="/index" value="#{bundle.ViewPositionIndexLink}"/>
+					</f:facet>
+				</p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

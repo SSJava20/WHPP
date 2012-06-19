@@ -78,6 +78,7 @@ public class PositionController implements Serializable {
 
 	public String prepareCreate() {
 		current = new Position();
+		current.setId(1);
 		selectedItemIndex = -1;
 		return "Create";
 	}

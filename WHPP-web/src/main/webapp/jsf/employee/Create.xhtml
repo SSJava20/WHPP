@@ -3,55 +3,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateEmployeeTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+			<h:panelGroup id="messagePanel" layout="block">
+                <p:messages id="messages" showDetail="true" autoUpdate="true"/>
             </h:panelGroup>
+
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{employeeController.selected.id}" title="#{bundle.CreateEmployeeTitle_id}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_id}"/>
+                <p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.CreateEmployeeTitle}
+					</f:facet>
+
                     <h:outputLabel value="#{bundle.CreateEmployeeLabel_fname}" for="fname" />
-                    <h:inputText id="fname" value="#{employeeController.selected.fname}" title="#{bundle.CreateEmployeeTitle_fname}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_fname}"/>
+                    <p:inputText id="fname" value="#{employeeController.selected.fname}" title="#{bundle.CreateEmployeeTitle_fname}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_fname}"/>
                     <h:outputLabel value="#{bundle.CreateEmployeeLabel_lname}" for="lname" />
-                    <h:inputText id="lname" value="#{employeeController.selected.lname}" title="#{bundle.CreateEmployeeTitle_lname}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_lname}"/>
+                    <p:inputText id="lname" value="#{employeeController.selected.lname}" title="#{bundle.CreateEmployeeTitle_lname}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_lname}"/>
                     <h:outputLabel value="#{bundle.CreateEmployeeLabel_phone}" for="phone" />
-                    <h:inputText id="phone" value="#{employeeController.selected.phone}" title="#{bundle.CreateEmployeeTitle_phone}" />
+                    <p:inputText id="phone" value="#{employeeController.selected.phone}" title="#{bundle.CreateEmployeeTitle_phone}" />
                     <h:outputLabel value="#{bundle.CreateEmployeeLabel_email}" for="email" />
-                    <h:inputText id="email" value="#{employeeController.selected.email}" title="#{bundle.CreateEmployeeTitle_email}" />
-                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_birth}" for="birth" />
-                    <h:inputText id="birth" value="#{employeeController.selected.birth}" title="#{bundle.CreateEmployeeTitle_birth}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_city}" for="city" />
-                    <h:inputText id="city" value="#{employeeController.selected.city}" title="#{bundle.CreateEmployeeTitle_city}" />
+                    <p:inputText id="email" value="#{employeeController.selected.email}" title="#{bundle.CreateEmployeeTitle_email}" />
+					<h:outputLabel value="#{bundle.CreateEmployeeLabel_birth}" for="birth" />
+					<p:calendar pattern="MM/dd/yyyy HH:mm:ss" value="#{employeeController.selected.birth}" title="#{bundle.CreateEmployeeTitle_birth}" required="true" requiredMessage="#{bundle.CreateTicketRequiredMessage_createTime}">
+						<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+					</p:calendar>
+					<h:outputLabel value="#{bundle.CreateEmployeeLabel_city}" for="city" />
+                    <p:inputText id="city" value="#{employeeController.selected.city}" title="#{bundle.CreateEmployeeTitle_city}" />
                     <h:outputLabel value="#{bundle.CreateEmployeeLabel_comment}" for="comment" />
-                    <h:inputText id="comment" value="#{employeeController.selected.comment}" title="#{bundle.CreateEmployeeTitle_comment}" />
+                    <p:inputText id="comment" value="#{employeeController.selected.comment}" title="#{bundle.CreateEmployeeTitle_comment}" />
                     <h:outputLabel value="#{bundle.CreateEmployeeLabel_workStatus}" for="workStatus" />
-                    <h:inputText id="workStatus" value="#{employeeController.selected.workStatus}" title="#{bundle.CreateEmployeeTitle_workStatus}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_workStatus}"/>
+                    <p:inputText id="workStatus" value="#{employeeController.selected.workStatus}" title="#{bundle.CreateEmployeeTitle_workStatus}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_workStatus}"/>
                     <h:outputLabel value="#{bundle.CreateEmployeeLabel_position}" for="position" />
-                    <h:selectOneMenu id="position" value="#{employeeController.selected.position}" title="#{bundle.CreateEmployeeTitle_position}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_position}">
+                    <p:selectOneMenu id="position" value="#{employeeController.selected.position}" title="#{bundle.CreateEmployeeTitle_position}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_position}">
                         <f:selectItems value="#{positionController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateEmployeeLabel_userId}" for="userId" />
-                    <h:selectOneMenu id="userId" value="#{employeeController.selected.userId}" title="#{bundle.CreateEmployeeTitle_userId}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_userId}">
+                    <p:selectOneMenu id="userId" value="#{employeeController.selected.userId}" title="#{bundle.CreateEmployeeTitle_userId}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_userId}">
                         <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{employeeController.create}" value="#{bundle.CreateEmployeeSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{employeeController.prepareList}" value="#{bundle.CreateEmployeeShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateEmployeeIndexLink}"/>
+                    </p:selectOneMenu>
+
+					<f:facet name="footer">
+						<p:commandButton action="#{employeeController.create}" value="#{bundle.CreateEmployeeSaveLink}"  ajax="false" />
+						<p:commandButton action="#{employeeController.prepareList}" value="#{bundle.CreateEmployeeShowAllLink}" immediate="true" ajax="false"/>
+						<p:button outcome="/index" value="#{bundle.CreateEmployeeIndexLink}" ajax="false"/>
+					</f:facet>
+                </p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

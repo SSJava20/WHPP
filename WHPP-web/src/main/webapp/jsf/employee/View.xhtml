@@ -3,18 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewEmployeeTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+			<h:panelGroup id="messagePanel" layout="block">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"/>
+			</h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.ViewEmployeeTitle}
+					</f:facet>
                     <h:outputText value="#{bundle.ViewEmployeeLabel_id}"/>
                     <h:outputText value="#{employeeController.selected.id}" title="#{bundle.ViewEmployeeTitle_id}"/>
                     <h:outputText value="#{bundle.ViewEmployeeLabel_fname}"/>
@@ -36,23 +40,18 @@
                     <h:outputText value="#{bundle.ViewEmployeeLabel_workStatus}"/>
                     <h:outputText value="#{employeeController.selected.workStatus}" title="#{bundle.ViewEmployeeTitle_workStatus}"/>
                     <h:outputText value="#{bundle.ViewEmployeeLabel_position}"/>
-                    <h:outputText value="#{employeeController.selected.position}" title="#{bundle.ViewEmployeeTitle_position}"/>
+                    <h:outputText value="#{employeeController.selected.position.name}" title="#{bundle.ViewEmployeeTitle_position}"/>
                     <h:outputText value="#{bundle.ViewEmployeeLabel_userId}"/>
                     <h:outputText value="#{employeeController.selected.userId}" title="#{bundle.ViewEmployeeTitle_userId}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{employeeController.destroyAndView}" value="#{bundle.ViewEmployeeDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewEmployeeEditLink}"/>
-                <br />
-                <h:commandLink action="#{employeeController.prepareCreate}" value="#{bundle.ViewEmployeeCreateLink}" />
-                <br />
-                <h:commandLink action="#{employeeController.prepareList}" value="#{bundle.ViewEmployeeShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewEmployeeIndexLink}"/>
 
+					<f:facet name="footer">
+						<p:commandButton action="#{employeeController.destroyAndView}" value="#{bundle.ViewEmployeeDestroyLink}" ajax="false"/>
+						<p:button outcome="Edit" value="#{bundle.ViewEmployeeEditLink}"/>
+						<p:commandButton action="#{employeeController.prepareCreate}" value="#{bundle.ViewEmployeeCreateLink}"  ajax="false"/>
+						<p:commandButton action="#{employeeController.prepareList}" value="#{bundle.ViewEmployeeShowAllLink}" ajax="false"/>
+						<p:button outcome="/index" value="#{bundle.ViewEmployeeIndexLink}"/>
+					</f:facet>
+				</p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -73,7 +73,7 @@
 
 				</p:panelGrid> 
 
-				<p:dialog widgetVar="dlg" width="625" height="400" modal="true">
+				<p:dialog widgetVar="dlg" width="625" height="400" modal="false">
 					<p:gmap center="#{coordsController.latlng}" zoom="15" type="HYBRID"
 							style="width:600px;height:400px" widgetVar="mymap">
 						<p:ajax event="pointSelect" listener="#{coordsController.onPointSelect}" update="latitude, longitude" />

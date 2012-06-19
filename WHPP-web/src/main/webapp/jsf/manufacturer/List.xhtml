@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -12,61 +13,62 @@
         <ui:define name="body">
 			<h:form styleClass="jsfcrud_list_form">
 				<h:panelGroup id="messagePanel" layout="block">
-					<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+					<p:messages id="messages" showDetail="true" autoUpdate="true"/>
 				</h:panelGroup>
 				<h:outputText escape="false" value="#{bundle.ListManufacturerEmpty}" rendered="#{manufacturerController.items.rowCount == 0}"/>
+
 				<h:panelGroup rendered="#{manufacturerController.items.rowCount > 0}">
 					<h:outputText value="#{manufacturerController.pagination.pageFirstItem + 1}..#{manufacturerController.pagination.pageLastItem + 1}/#{manufacturerController.pagination.itemsCount}"/>&nbsp;
 					<h:commandLink action="#{manufacturerController.previous}" value="#{bundle.Previous} #{manufacturerController.pagination.pageSize}" rendered="#{manufacturerController.pagination.hasPreviousPage}"/>&nbsp;
 					<h:commandLink action="#{manufacturerController.next}" value="#{bundle.Next} #{manufacturerController.pagination.pageSize}" rendered="#{manufacturerController.pagination.hasNextPage}"/>&nbsp;
-					<h:dataTable value="#{manufacturerController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{bundle.ListManufacturerTitle_id}"/>
-							</f:facet>
-							<h:outputText value="#{item.id}"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{bundle.ListManufacturerTitle_name}"/>
-							</f:facet>
-							<h:outputText value="#{item.name}"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{bundle.ListManufacturerTitle_descr}"/>
-							</f:facet>
-							<h:outputText value="#{item.descr}"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{bundle.ListManufacturerTitle_adrress}"/>
-							</f:facet>
-							<h:outputText value="#{item.adrress}"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{bundle.ListManufacturerTitle_site}"/>
-							</f:facet>
-							<h:outputText value="#{item.site}"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="&nbsp;"/>
-							</f:facet>
+					<p:dataTable value="#{manufacturerController.items}" var="item"
+								 resizableColumns="true"
+								 emptyMessage="&nbsp;"
+								 style="width: 100%">
+
+						<f:facet name="header">
+							<h:outputText value="#{manufacturerController.pagination.pageFirstItem + 1}..#{manufacturerController.pagination.pageLastItem + 1}/#{manufacturerController.pagination.itemsCount}"/>&nbsp;
+							<h:commandLink action="#{manufacturerController.previous}" value="#{bundle.Previous} #{manufacturerController.pagination.pageSize}" rendered="#{manufacturerController.pagination.hasPreviousPage}"/>&nbsp;
+							<h:commandLink action="#{manufacturerController.next}" value="#{bundle.Next} #{manufacturerController.pagination.pageSize}" rendered="#{manufacturerController.pagination.hasNextPage}"/>&nbsp;
+						</f:facet>
+
+						<p:column headerText="#{bundle.ListManufacturerTitle_id}" rendered="true" style="width: 10%">
+							<h:outputText value="#{item.id}" />
+						</p:column>
+
+						<p:column headerText="#{bundle.ListManufacturerTitle_name}" rendered="true">
+							<h:outputText value="#{item.name}" />
+						</p:column>
+
+						<p:column headerText="#{bundle.ListManufacturerTitle_descr}" rendered="true">
+							<h:outputText value="#{item.descr}" />
+						</p:column>
+
+						<p:column headerText="#{bundle.ListManufacturerTitle_adrress}" rendered="true">
+							<h:outputText value="#{item.adrress}" />
+						</p:column>
+
+						<p:column headerText="#{bundle.ListManufacturerTitle_site}" rendered="true">
+							<h:outputText value="#{item.site}" />
+						</p:column>
+
+						<p:column rendered="true">
 							<h:commandLink action="#{manufacturerController.prepareView}" value="#{bundle.ListManufacturerViewLink}"/>
 							<h:outputText value=" "/>
 							<h:commandLink action="#{manufacturerController.prepareEdit}" value="#{bundle.ListManufacturerEditLink}"/>
 							<h:outputText value=" "/>
 							<h:commandLink action="#{manufacturerController.destroy}" value="#{bundle.ListManufacturerDestroyLink}"/>
-						</h:column>
-					</h:dataTable>
+						</p:column>
+					</p:dataTable>
 				</h:panelGroup>
-				<br />
-				<h:commandLink action="#{manufacturerController.prepareCreate}" value="#{bundle.ListManufacturerCreateLink}"/>
-				<br />
-				<br />
-				<h:link outcome="/index" value="#{bundle.ListManufacturerIndexLink}"/>
+
+				<p:panelGrid columns="1" >
+					<f:facet name="footer">
+						<p:commandButton action="#{manufacturerController.prepareCreate}" value="#{bundle.ListManufacturerCreateLink}" ajax="false"/>
+						<p:button outcome="/index" value="#{bundle.ListManufacturerIndexLink}"/>
+					</f:facet>
+				</p:panelGrid>
+
 			</h:form>
         </ui:define>
     </ui:composition>

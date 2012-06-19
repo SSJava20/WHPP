@@ -78,6 +78,7 @@ public class EmployeeController implements Serializable {
 
 	public String prepareCreate() {
 		current = new Employee();
+		current.setId(1);
 		selectedItemIndex = -1;
 		return "Create";
 	}

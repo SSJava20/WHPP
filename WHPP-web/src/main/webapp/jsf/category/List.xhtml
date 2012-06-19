@@ -18,20 +18,19 @@
 				<h:outputText escape="false" value="#{bundle.ListCategoryEmpty}" rendered="#{categoryController.items.rowCount == 0}"/>
 
 				<h:panelGroup rendered="#{categoryController.items.rowCount > 0}">
-					<h:outputText value="#{categoryController.pagination.pageFirstItem + 1}..#{categoryController.pagination.pageLastItem + 1}/#{categoryController.pagination.itemsCount}"/>&nbsp;
-					<h:commandLink action="#{categoryController.previous}" value="#{bundle.Previous} #{categoryController.pagination.pageSize}" rendered="#{categoryController.pagination.hasPreviousPage}"/>&nbsp;
-					<h:commandLink action="#{categoryController.next}" value="#{bundle.Next} #{categoryController.pagination.pageSize}" rendered="#{categoryController.pagination.hasNextPage}"/>&nbsp;
-
+			
 					<p:dataTable var="item"
 								 value="#{categoryController.items}"
 								 resizableColumns="true"
 								 emptyMessage="&nbsp;"
 								 style="width: 100%">
+
 						<f:facet name="header">
 							<h:outputText value="#{categoryController.pagination.pageFirstItem + 1}..#{categoryController.pagination.pageLastItem + 1}/#{categoryController.pagination.itemsCount}"/>&nbsp;
 							<h:commandLink action="#{categoryController.previous}" value="#{bundle.Previous} #{categoryController.pagination.pageSize}" rendered="#{categoryController.pagination.hasPreviousPage}"/>&nbsp;
 							<h:commandLink action="#{categoryController.next}" value="#{bundle.Next} #{categoryController.pagination.pageSize}" rendered="#{categoryController.pagination.hasNextPage}"/>&nbsp;
 						</f:facet>
+
 						<p:column headerText="#{bundle.ListCategoryTitle_categoryId}" rendered="true" style="width: 10%">
 							<h:outputText value="#{item.categoryId}" />
 						</p:column>

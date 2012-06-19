@@ -121,7 +121,7 @@ public class Position implements Serializable {
 
 	@Override
 	public String toString() {
-		return "org.courses.whpp.entity.Position[ id=" + id + " ]";
+		return name;
 	}
 
 }

@@ -78,6 +78,7 @@ public class ManufacturerController implements Serializable {
 
 	public String prepareCreate() {
 		current = new Manufacturer();
+		current.setId(1);
 		selectedItemIndex = -1;
 		return "Create";
 	}

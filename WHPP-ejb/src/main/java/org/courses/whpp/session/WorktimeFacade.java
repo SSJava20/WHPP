@@ -50,7 +50,10 @@ public class WorktimeFacade extends AbstractFacade<Worktime>
 
         Employee employeeForId = employeeFacade.findById(EmployeeId);
         if(employeeForId == null)
+        {
             result = false;
+            return result;
+        }
 
         Worktime worktimeForId = findOpenedByEmployeeId(EmployeeId);
         if(worktimeForId != null )

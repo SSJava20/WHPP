@@ -26,10 +26,6 @@ public class WorktimeController implements Serializable {
 
 	private DataModel items = null;
 
-	private int empId;
-
-
-
 	@EJB
 	private org.courses.whpp.session.WorktimeFacade ejbFacade;
 
@@ -46,14 +42,6 @@ public class WorktimeController implements Serializable {
 			selectedItemIndex = -1;
 		}
 		return current;
-	}
-
-	public int getEmpId() {
-		return empId;
-	}
-
-	public void setEmpId(int EmpId) {
-		this.empId = EmpId;
 	}
 
 	private WorktimeFacade getFacade() {
@@ -116,28 +104,6 @@ public class WorktimeController implements Serializable {
 			getFacade().edit(current);
 			JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("WorktimeUpdated"));
 			return "View";
-		} catch (Exception e) {
-			JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-			return null;
-		}
-	}
-
-	public String logIn() {
-		try {
-			getFacade().logIn(empId);
-			JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("WorktimeManager_in_suscess"));
-			return "Manager";
-		} catch (Exception e) {
-			JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-			return null;
-		}
-	}
-
-	public String logOut() {
-		try {
-			getFacade().logOut(empId);
-			JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("WorktimeManager_out_suscess"));
-			return "Manager";
 		} catch (Exception e) {
 			JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
 			return null;

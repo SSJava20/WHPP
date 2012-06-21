@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
 		<h:outputStylesheet name="css/jsfcrud.css"/>
-		
+
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     </h:head>
 
@@ -25,36 +25,34 @@
 				Footer
 			</p:layoutUnit>
 
-			<p:layoutUnit position="west" size="190" header="Left" collapsible="true">
-				<p:menu>
-					<p:submenu label="Modules">
-						<p:menuitem value="Main" url="/faces/index.xhtml"/>
-						<p:menuitem value="Worktime" url="/faces/jsf/wtmanager/Manager.xhtml"/>
-					</p:submenu>
-					<p:submenu label="CRUD">
-						<p:menuitem value="Categories" url="/faces/jsf/category/List.xhtml"/>
-						<p:menuitem value="Clients" url="/faces/jsf/client/List.xhtml"/>
-						<p:menuitem value="Coords" url="/faces/jsf/coords/List.xhtml"/>
-						<p:menuitem value="Employee" url="/faces/jsf/employee/List.xhtml"/>
-						<p:menuitem value="Manufacturers" url="/faces/jsf/manufacturer/List.xhtml"/>
-						<p:menuitem value="Positions" url="/faces/jsf/position/List.xhtml"/>
-						<p:menuitem value="Product" url="/faces/jsf/product/List.xhtml"/>
-						<p:menuitem value="Price" url="/faces/jsf/price/List.xhtml"/>
-						<p:menuitem value="Balance" url="/faces/jsf/productBalance/List.xhtml"/>
-						<p:menuitem value="Properties" url="/faces/jsf/property/List.xhtml"/>
-						<p:menuitem value="Routes" url="/faces/jsf/route/List.xhtml"/>
-						<p:menuitem value="RoutePoints" url="/faces/jsf/routepoint/List.xhtml"/>
-						<p:menuitem value="Tickets" url="/faces/jsf/ticket/List.xhtml"/>
-						<p:menuitem value="TicketItems" url="/faces/jsf/ticketItem/List.xhtml"/>
-						<p:menuitem value="Vacation" url="/faces/jsf/vacation/List.xhtml"/>
-						<p:menuitem value="Warehouse" url="/faces/jsf/warehouse/List.xhtml"/>
-					</p:submenu>
-					<p:submenu label="Users">
-						<p:menuitem value="Users" url="/faces/jsf/user/List.xhtml"/>
-						<p:menuitem value="Groups" url="/faces/jsf/userGroup/List.xhtml"/>
-						<p:menuitem value="UserInGroup" url="/faces/jsf/userGroupRelation/List.xhtml"/>
-					</p:submenu>
-				</p:menu>
+			<p:layoutUnit position="west" size="190" header="Menu" collapsible="true">
+
+				<h:outputText value="Modules"/>
+				<br/>
+				<p:button value="Main" outcome="/faces/index.xhtml" style="width:150px"/>
+				<br/>
+				<p:button value="InOutManager" outcome="/faces/jsf/wtmanager/Manager.xhtml" style="width:150px"/>
+				<br/>
+				<h:outputText value="CRUD"/>
+				<br/>
+				<p:button value="Positions" outcome="/faces/jsf/position/List.xhtml" style="width:150px"/>
+				<br/>
+				<p:button value="Employee" outcome="/faces/jsf/employee/List.xhtml" style="width:150px"/>
+				<br/>
+				<p:button value="Users" outcome="/faces/jsf/user/List.xhtml" style="width:150px"/>
+				<br/>
+				<p:button value="Groups" outcome="/faces/jsf/userGroup/List.xhtml" style="width:150px"/>
+				<br/>
+				<p:button value="UserInGroups" outcome="/faces/jsf/userGroupRelation/List.xhtml" style="width:150px"/>
+				<br/>
+				<p:button value="Category" outcome="/faces/jsf/category/List.xhtml" style="width:150px"/>
+				<br/>
+				<p:button value="Products" outcome="/faces/jsf/product/List.xhtml" style="width:150px"/>
+				<br/>
+				<p:button value="Coords" outcome="/faces/jsf/coords/List.xhtml" style="width:150px"/>
+				<br/>
+				<p:button value="WorkTime" outcome="/faces/jsf/worktime/List.xhtml" style="width:150px"/>
+				<br/>
 			</p:layoutUnit>
 
 			<p:layoutUnit position="center">

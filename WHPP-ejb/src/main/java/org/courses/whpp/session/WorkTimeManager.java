@@ -6,50 +6,40 @@ package org.courses.whpp.session;
 
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.courses.whpp.entity.Employee;
 import org.courses.whpp.entity.Worktime;
 
-import java.util.Date;
-import java.util.List;
-import javax.ejb.EJB;
-
 /**
- * @author Roman Kostyrko <nubaseg@gmail.com> Created on Jun 13, 2012, 8:11:44
- * PM
+ *
+ * @author Roman Kostyrko <nubaseg@gmail.com>
  */
 @Stateless
-public class WorktimeFacade extends AbstractFacade<Worktime> {
+public class WorkTimeManager  {
 
 	@EJB
 	private EmployeeFacade employeeFacade;
 
+	@EJB
+	private WorktimeFacade wtFacade;
+
 	@PersistenceContext(unitName = "org.courses_WHPP-ejb_ejb_1.0-SNAPSHOTPU")
 	private EntityManager em;
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return em;
+	public WorkTimeManager() {
 	}
 
-	public WorktimeFacade() {
-		super(Worktime.class);
-	}
-
-	public List<Worktime> findOpenedByEmployeeId(Employee EmployeeId) {
-		return em.createNamedQuery("Worktime.findOpenedByEmployeeId").setParameter("EmployeeId", EmployeeId).getResultList();
-	}
 
 	public void logIn(Integer EmployeeId) {
 		Employee employeeForId = employeeFacade.find(EmployeeId);
-		List<Worktime> worktimeForId = findOpenedByEmployeeId(employeeForId);
+		List<Worktime> worktimeForId = wtFacade.findOpenedByEmployeeId(employeeForId);
 		for (Worktime wt : worktimeForId) {
 			logOut(wt);
 		}
-		this.create(new Worktime(new Date(), null, employeeForId));
+		wtFacade.create(new Worktime(new Date(), null, employeeForId));
 	}
 
 	public void logOut(Integer EmployeeId) {
@@ -57,7 +47,7 @@ public class WorktimeFacade extends AbstractFacade<Worktime> {
 		if (employeeForId == null) {
 			throw new IllegalStateException("Emp is not found");
 		}
-		List<Worktime> worktimeForId = findOpenedByEmployeeId(employeeForId);
+		List<Worktime> worktimeForId = wtFacade.findOpenedByEmployeeId(employeeForId);
 		for (Worktime wt : worktimeForId) {
 			logOut(wt);
 		}
@@ -71,6 +61,6 @@ public class WorktimeFacade extends AbstractFacade<Worktime> {
 			tl.setOuttime(curTime);
 		}
 
-		this.edit(tl);
+		wtFacade.edit(tl);
 	}
 }

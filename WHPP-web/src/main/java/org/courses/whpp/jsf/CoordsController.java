@@ -1,14 +1,8 @@
 package org.courses.whpp.jsf;
 
-import org.courses.whpp.entity.Coords;
-import org.courses.whpp.jsf.util.JsfUtil;
-import org.courses.whpp.jsf.util.PaginationHelper;
-import org.courses.whpp.session.CoordsFacade;
-
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -18,12 +12,11 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-
+import org.courses.whpp.entity.Coords;
+import org.courses.whpp.jsf.util.JsfUtil;
+import org.courses.whpp.jsf.util.PaginationHelper;
+import org.courses.whpp.session.CoordsFacade;
 import org.primefaces.event.map.PointSelectEvent;
-import org.primefaces.event.map.StateChangeEvent;
-import org.primefaces.model.map.DefaultMapModel;
-import org.primefaces.model.map.LatLng;
-import org.primefaces.model.map.LatLngBounds;
 
 @ManagedBean(name = "coordsController")
 @SessionScoped
@@ -58,15 +51,13 @@ public class CoordsController implements Serializable {
 	}
 
 	public String getLatlng() {
-		latlng = current.getLatitude()+","+current.getLongitude();
+		latlng = current.getLatitude() + "," + current.getLongitude();
 		return latlng;
 	}
 
 	public void setLatlng(String latlng) {
 		this.latlng = latlng;
 	}
-
-
 
 	public PaginationHelper getPagination() {
 		if (pagination == null) {
@@ -84,7 +75,6 @@ public class CoordsController implements Serializable {
 		}
 		return pagination;
 	}
-
 
 	public void onPointSelect(PointSelectEvent event) {
 		current.setLatitude(event.getLatLng().getLat());

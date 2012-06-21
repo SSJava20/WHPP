@@ -2,9 +2,10 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="jsf/category/Create.xhtml" x="1900" y="600" zoom="true"/>
         <Node id="jsf/employee/Edit.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="jsf/category/Create.xhtml" x="1900" y="600" zoom="true"/>
         <Node id="jsf/worktime/View.xhtml" x="2400" y="300" zoom="true"/>
+        <Node id="jsf/worktime/Manager.xhtml" x="650" y="1050" zoom="true"/>
         <Node id="jsf/user/Edit.xhtml" x="3150" y="150" zoom="true"/>
         <Node id="jsf/position/Create.xhtml" x="1150" y="900" zoom="true"/>
         <Node id="jsf/vacation/List.xhtml" x="1650" y="750" zoom="true"/>
@@ -18,14 +19,13 @@
         <Node id="jsf/ticketItem/List.xhtml" x="1900" y="900" zoom="true"/>
         <Node id="jsf/warehouse/List.xhtml" x="900" y="900" zoom="true"/>
         <Node id="jsf/client/List.xhtml" x="900" y="750" zoom="true"/>
-        <Node id="jsf/price/List.xhtml" x="650" y="1500" zoom="true"/>
         <Node id="jsf/user/View.xhtml" x="1900" y="450" zoom="true"/>
         <Node id="jsf/vacation/Create.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="jsf/price/List.xhtml" x="650" y="1500" zoom="true"/>
         <Node id="jsf/price/Edit.xhtml" x="400" y="900" zoom="true"/>
-        <Node id="welcomePrimefaces.xhtml" x="650" y="1050" zoom="true"/>
         <Node id="jsf/coords/Edit.xhtml" x="650" y="900" zoom="true"/>
-        <Node id="jsf/userGroupRelation/Edit.xhtml" x="2150" y="750" zoom="true"/>
         <Node id="jsf/productBalance/Edit.xhtml" x="1400" y="750" zoom="true"/>
+        <Node id="jsf/userGroupRelation/Edit.xhtml" x="2150" y="750" zoom="true"/>
         <Node id="jsf/userGroup/Edit.xhtml" x="150" y="450" zoom="true"/>
         <Node id="jsf/productBalance/Create.xhtml" x="1900" y="150" zoom="true"/>
         <Node id="jsf/productBalance/View.xhtml" x="900" y="1050" zoom="true"/>
@@ -36,8 +36,8 @@
         <Node id="jsf/worktime/Edit.xhtml" x="2400" y="150" zoom="true"/>
         <Node id="jsf/property/List.xhtml" x="1400" y="1050" zoom="true"/>
         <Node id="jsf/property/Create.xhtml" x="1650" y="150" zoom="true"/>
-        <Node id="jsf/user/Create.xhtml" x="1650" y="600" zoom="true"/>
         <Node id="jsf/property/Edit.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="jsf/user/Create.xhtml" x="1650" y="600" zoom="true"/>
         <Node id="jsf/userGroupRelation/Create.xhtml" x="900" y="1200" zoom="true"/>
         <Node id="jsf/userGroupRelation/List.xhtml" x="2650" y="450" zoom="true"/>
         <Node id="jsf/manufacturer/Edit.xhtml" x="150" y="150" zoom="true"/>
@@ -48,8 +48,8 @@
         <Node id="jsf/userGroup/Create.xhtml" x="650" y="750" zoom="true"/>
         <Node id="jsf/user/List.xhtml" x="1150" y="1200" zoom="false"/>
         <Node id="jsf/routepoint/Edit.xhtml" x="1150" y="600" zoom="true"/>
-        <Node id="jsf/worktime/Create.xhtml" x="900" y="1350" zoom="true"/>
         <Node id="template.xhtml" x="2650" y="300" zoom="true"/>
+        <Node id="jsf/worktime/Create.xhtml" x="900" y="1350" zoom="true"/>
         <Node id="jsf/routepoint/View.xhtml" x="650" y="600" zoom="true"/>
         <Node id="jsf/routepoint/Create.xhtml" x="650" y="1200" zoom="true"/>
         <Node id="jsf/product/View.xhtml" x="2400" y="600" zoom="true"/>
@@ -62,8 +62,8 @@
         <Node id="jsf/warehouse/Edit.xhtml" x="2150" y="450" zoom="true"/>
         <Node id="jsf/route/Edit.xhtml" x="150" y="1200" zoom="true"/>
         <Node id="jsf/price/View.xhtml" x="1400" y="150" zoom="true"/>
-        <Node id="jsf/product/List.xhtml" x="2400" y="450" zoom="true"/>
         <Node id="jsf/coords/List.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="jsf/product/List.xhtml" x="2400" y="450" zoom="true"/>
         <Node id="jsf/manufacturer/Create.xhtml" x="150" y="900" zoom="true"/>
         <Node id="jsf/employee/List.xhtml" x="650" y="300" zoom="true"/>
         <Node id="jsf/ticket/View.xhtml" x="150" y="1800" zoom="true"/>
@@ -77,9 +77,9 @@
         <Node id="jsf/userGroupRelation/View.xhtml" x="2650" y="150" zoom="true"/>
         <Node id="jsf/employee/View.xhtml" x="400" y="150" zoom="true"/>
         <Node id="jsf/ticket/Create.xhtml" x="150" y="750" zoom="true"/>
-        <Node id="jsf/category/Edit.xhtml" x="150" y="1500" zoom="true"/>
         <Node id="index.xhtml" x="2150" y="300" zoom="true"/>
         <Node id="jsf/position/View.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="jsf/category/Edit.xhtml" x="150" y="1500" zoom="true"/>
         <Node id="jsf/employee/Create.xhtml" x="900" y="600" zoom="true"/>
         <Node id="jsf/category/View.xhtml" x="1900" y="300" zoom="true"/>
         <Node id="jsf/coords/View.xhtml" x="1150" y="750" zoom="true"/>

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -11,23 +12,24 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                <p:messages id="messages" showDetail="true" autoUpdate="true"/>
             </h:panelGroup>
+
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateRouteLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{routeController.selected.id}" title="#{bundle.CreateRouteTitle_id}" required="true" requiredMessage="#{bundle.CreateRouteRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateRouteLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{routeController.selected.name}" title="#{bundle.CreateRouteTitle_name}" required="true" requiredMessage="#{bundle.CreateRouteRequiredMessage_name}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{routeController.create}" value="#{bundle.CreateRouteSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{routeController.prepareList}" value="#{bundle.CreateRouteShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateRouteIndexLink}"/>
+                <p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.CreateRouteTitle}
+					</f:facet>
+
+					<h:outputLabel value="#{bundle.CreateRouteLabel_name}" for="name" />
+                    <p:inputText id="name" value="#{routeController.selected.name}" title="#{bundle.CreateRouteTitle_name}" required="true" requiredMessage="#{bundle.CreateRouteRequiredMessage_name}"/>
+                    
+					<f:facet name="footer">
+						<p:commandButton action="#{routeController.create}" value="#{bundle.CreateRouteSaveLink}"  ajax="false" />
+						<p:commandButton action="#{routeController.prepareList}" value="#{bundle.CreateRouteShowAllLink}" immediate="true" ajax="false"/>
+						<p:button outcome="/index" value="#{bundle.CreateRouteIndexLink}" ajax="false"/>
+					</f:facet>
+				</p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -15,83 +15,63 @@ import org.courses.whpp.entity.Worktime;
 
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 
 /**
- * @author Roman Kostyrko <nubaseg@gmail.com>
- *         Created on Jun 13, 2012, 8:11:44 PM
+ * @author Roman Kostyrko <nubaseg@gmail.com> Created on Jun 13, 2012, 8:11:44
+ * PM
  */
 @Stateless
-public class WorktimeFacade extends AbstractFacade<Worktime>
-{
-    protected EmployeeFacade employeeFacade = null;
+public class WorktimeFacade extends AbstractFacade<Worktime> {
 
-    @PersistenceContext(unitName = "org.courses_WHPP-ejb_ejb_1.0-SNAPSHOTPU")
-    private EntityManager em;
+	@EJB
+	private EmployeeFacade employeeFacade;
 
-    @Override
-    protected EntityManager getEntityManager()
-    {
-        return em;
-    }
+	@PersistenceContext(unitName = "org.courses_WHPP-ejb_ejb_1.0-SNAPSHOTPU")
+	private EntityManager em;
 
-    public WorktimeFacade()
-    {
-        super(Worktime.class);
-        employeeFacade = new EmployeeFacade();
-    }
+	@Override
+	protected EntityManager getEntityManager() {
+		return em;
+	}
 
-    public Worktime findOpenedByEmployeeId(Integer EmployeeId)
-    {
-        return (Worktime) em.createNamedQuery("Worktime.findOpenedByEmployeeId").setParameter("EmployeeId", EmployeeId).getSingleResult();
-    }
+	public WorktimeFacade() {
+		super(Worktime.class);
+		employeeFacade = new EmployeeFacade();
+	}
 
-    public Boolean logIn(Integer EmployeeId)
-    {
-        Boolean result = true;
+	public List<Worktime> findOpenedByEmployeeId(Employee EmployeeId) {
+		return em.createNamedQuery("Worktime.findOpenedByEmployeeId").setParameter("EmployeeId", EmployeeId).getResultList();
+	}
 
-        Employee employeeForId = employeeFacade.findById(EmployeeId);
-        if(employeeForId == null)
-        {
-            result = false;
-            return result;
-        }
+	public void logIn(Integer EmployeeId) {
+		Employee employeeForId = employeeFacade.find(EmployeeId);
+		List<Worktime> worktimeForId = findOpenedByEmployeeId(employeeForId);
+		for (Worktime wt : worktimeForId) {
+			logOut(wt);
+		}
+		this.create(new Worktime(new Date(), null, employeeForId));
+	}
 
-        Worktime worktimeForId = findOpenedByEmployeeId(EmployeeId);
-        if(worktimeForId != null )
-            result = result && logOut(worktimeForId);
+	public void logOut(Integer EmployeeId) {
+		Employee employeeForId = employeeFacade.find(EmployeeId);
+		if (employeeForId == null) {
+			throw new IllegalStateException("Emp is not found");
+		}
+		List<Worktime> worktimeForId = findOpenedByEmployeeId(employeeForId);
+		for (Worktime wt : worktimeForId) {
+			logOut(wt);
+		}
+	}
 
-        this.create(new Worktime(new Date(), null, employeeForId));
+	protected void logOut(Worktime tl) {
+		Date curTime = new Date();
+		if ((curTime.getTime() - tl.getIntime().getTime()) > 43200) {
+			tl.setOuttime(new Date(tl.getIntime().getTime() + 43200));
+		} else {
+			tl.setOuttime(curTime);
+		}
 
-        return result;
-
-    }
-
-    public Boolean logOut(Integer EmployeeId)
-    {
-        Boolean result = true;
-
-        Worktime worktimeForId = findOpenedByEmployeeId(EmployeeId);
-        if(worktimeForId == null )
-            result = false;
-        else
-            result = result && logOut(worktimeForId);
-
-        return result;
-    }
-
-    protected Boolean logOut(Worktime tl)
-    {
-        Date curTime = new Date();
-        if((curTime.getTime() - tl.getIntime().getTime()) > 43200)
-        {
-            tl.setOuttime(new Date(tl.getIntime().getTime()+43200));
-        }
-        else
-        {
-            tl.setOuttime(curTime);
-        }
-
-        this.edit(tl);
-        return true;         // working ideal by default
-    }
+		this.edit(tl);
+	}
 }

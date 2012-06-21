@@ -30,11 +30,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries(
 {
-    @NamedQuery(name = "Worktime.findAll", query = "SELECT w FROM Worktime w"),
-    @NamedQuery(name = "Worktime.findById", query = "SELECT w FROM Worktime w WHERE w.id = :id"),
-    @NamedQuery(name = "Worktime.findByIntime", query = "SELECT w FROM Worktime w WHERE w.intime = :intime"),
-    @NamedQuery(name = "Worktime.findByOuttime", query = "SELECT w FROM Worktime w WHERE w.outtime = :outtime"),
-    @NamedQuery(name = "Worktime.findOpenedByEmployeeId", query = "SELECT w FROM Worktime w WHERE w.ountime = null and w.EMP_ID = :EmployeeId")
+	@NamedQuery(name = "Worktime.findAll", query = "SELECT w FROM Worktime w"),
+	@NamedQuery(name = "Worktime.findById", query = "SELECT w FROM Worktime w WHERE w.id = :id"),
+	@NamedQuery(name = "Worktime.findByIntime", query = "SELECT w FROM Worktime w WHERE w.intime = :intime"),
+	@NamedQuery(name = "Worktime.findByOuttime", query = "SELECT w FROM Worktime w WHERE w.outtime = :outtime"),
+	@NamedQuery(name = "Worktime.findOpenedByEmployeeId", query = "SELECT w FROM Worktime w WHERE w.outtime IS NULL and w.empId = :EmployeeId")
 })
 public class Worktime implements Serializable {
 
@@ -58,28 +58,26 @@ public class Worktime implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date outtime;
 
-    public Worktime(Date intime, Date outtime, Employee empId)
-    {
-        this.intime = intime;
-        this.outtime = outtime;
-        this.empId = empId;
-    }
+	@JoinColumn(name = "EMP_ID", referencedColumnName = "ID", nullable = false)
+	@ManyToOne(optional = false)
+	private Employee empId;
 
+	public Worktime(Date intime, Date outtime, Employee empId) {
+		this.id = 1;
+		this.intime = intime;
+		this.outtime = outtime;
+		this.empId = empId;
+	}
 
-    public Integer getId()
-    {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
 	public Worktime() {
 	}
 
 	public Worktime(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getId() {
-		return id;
 	}
 
 	public void setId(Integer id) {

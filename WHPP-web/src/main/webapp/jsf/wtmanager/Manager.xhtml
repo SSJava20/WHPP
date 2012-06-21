@@ -11,16 +11,21 @@
             <h:outputText value="#{bundle.ListWorktimeTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-			<h:form styleClass="jsfcrud_list_form">
+			<h:form>
 				<h:panelGroup id="messagePanel" layout="block">
-					<p:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+					<p:messages id="messages" showDetail="true" autoUpdate="true"/>
 				</h:panelGroup>
-				<p:panelGrid>
-					<p:outputLabel value="#{bundle.EditCategoryLabel_name}" for="name" />
-                    <p:inputText id="name" value="#{categoryController.selected.name}" title="#{bundle.EditCategoryTitle_name}" required="true" requiredMessage="#{bundle.EditCategoryRequiredMessage_name}"/>
-
-
-				</p:panelGrid>
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.WorktimeManager_title}
+					</f:facet>
+                    <p:outputLabel value="#{bundle.WorktimeManager_id_label}" for="id" />
+                    <p:inputText id="id" value="#{worktimeController.empId}" title="#{bundle.WorktimeManager_id_label}" required="true" requiredMessage="#{bundle.CreateWorktimeRequiredMessage_id}"/>
+					<f:facet name="footer">
+						<p:commandButton action="#{worktimeController.logIn}" value="#{bundle.WorktimeManager_in_button}" ajax="false"/>
+						<p:commandButton action="#{worktimeController.logOut}" value="#{bundle.WorktimeManager_out_button}" ajax="false"/>
+					</f:facet>
+                </p:panelGrid>
 			</h:form>
         </ui:define>
     </ui:composition>

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,25 +15,23 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.ViewRouteTitle}
+					</f:facet>
                     <h:outputText value="#{bundle.ViewRouteLabel_id}"/>
                     <h:outputText value="#{routeController.selected.id}" title="#{bundle.ViewRouteTitle_id}"/>
                     <h:outputText value="#{bundle.ViewRouteLabel_name}"/>
                     <h:outputText value="#{routeController.selected.name}" title="#{bundle.ViewRouteTitle_name}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{routeController.destroyAndView}" value="#{bundle.ViewRouteDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewRouteEditLink}"/>
-                <br />
-                <h:commandLink action="#{routeController.prepareCreate}" value="#{bundle.ViewRouteCreateLink}" />
-                <br />
-                <h:commandLink action="#{routeController.prepareList}" value="#{bundle.ViewRouteShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewRouteIndexLink}"/>
 
+					<f:facet name="footer">
+						<p:commandButton action="#{routeController.destroyAndView}" value="#{bundle.ViewRouteDestroyLink}" ajax="false"/>
+						<p:button outcome="Edit" value="#{bundle.ViewRouteEditLink}"/>
+						<p:commandButton action="#{routeController.prepareCreate}" value="#{bundle.ViewRouteCreateLink}"  ajax="false"/>
+						<p:commandButton action="#{routeController.prepareList}" value="#{bundle.ViewRouteShowAllLink}" ajax="false"/>
+						<p:button outcome="/index" value="#{bundle.ViewRouteIndexLink}"/>
+					</f:facet>
+				</p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

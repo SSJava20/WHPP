@@ -78,6 +78,7 @@ public class RouteController implements Serializable {
 
 	public String prepareCreate() {
 		current = new Route();
+		current.setId(1);
 		selectedItemIndex = -1;
 		return "Create";
 	}

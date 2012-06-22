@@ -17,12 +17,21 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.courses.whpp.entity.Coords;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 @ManagedBean(name = "routeController")
 @SessionScoped
 public class RouteController implements Serializable {
 
+	private MapModel mapModel;
+
 	private Route current;
+
+	private String latlng;
 
 	private DataModel items = null;
 
@@ -155,6 +164,36 @@ public class RouteController implements Serializable {
 		if (selectedItemIndex >= 0) {
 			current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
 		}
+	}
+
+	public MapModel getMapModel() {
+		updateCurrentItem();
+		ejbFacade.refresh(current);
+		mapModel = new DefaultMapModel();
+
+		if (current.getRoutepointList() == null) {
+			return mapModel;
+		}
+
+		for (int i = 0; i < current.getRoutepointList().size(); i++) {
+			Coords coords = current.getRoutepointList().get(i).getCoordsId();
+			LatLng ll = new LatLng(coords.getLatitude(), coords.getLongitude());
+			mapModel.addOverlay(new Marker(ll, coords.getAddress()));
+		}
+
+		return mapModel;
+	}
+
+	public String getLatlng() {
+		updateCurrentItem();
+		ejbFacade.refresh(current);
+		if (current.getRoutepointList() != null && !current.getRoutepointList().isEmpty()) {
+			Coords coords = current.getRoutepointList().get(0).getCoordsId();
+			latlng = coords.getLatitude() + "," + coords.getLongitude();
+		} else {
+			latlng = "0,0";
+		}
+		return latlng;
 	}
 
 	public DataModel getItems() {

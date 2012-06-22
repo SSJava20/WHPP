@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,29 +15,28 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.ViewRoutepointTitle}
+					</f:facet>
                     <h:outputText value="#{bundle.ViewRoutepointLabel_id}"/>
                     <h:outputText value="#{routepointController.selected.id}" title="#{bundle.ViewRoutepointTitle_id}"/>
                     <h:outputText value="#{bundle.ViewRoutepointLabel_name}"/>
                     <h:outputText value="#{routepointController.selected.name}" title="#{bundle.ViewRoutepointTitle_name}"/>
-                    <h:outputText value="#{bundle.ViewRoutepointLabel_routeId}"/>
-                    <h:outputText value="#{routepointController.selected.routeId}" title="#{bundle.ViewRoutepointTitle_routeId}"/>
-                    <h:outputText value="#{bundle.ViewRoutepointLabel_coordsId}"/>
-                    <h:outputText value="#{routepointController.selected.coordsId}" title="#{bundle.ViewRoutepointTitle_coordsId}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{routepointController.destroyAndView}" value="#{bundle.ViewRoutepointDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewRoutepointEditLink}"/>
-                <br />
-                <h:commandLink action="#{routepointController.prepareCreate}" value="#{bundle.ViewRoutepointCreateLink}" />
-                <br />
-                <h:commandLink action="#{routepointController.prepareList}" value="#{bundle.ViewRoutepointShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewRoutepointIndexLink}"/>
+					<h:outputText value="#{bundle.ViewRoutepointLabel_coordsId}"/>
+					<h:outputText value="#{routepointController.assignedRouteName}" />
+					<h:outputText value="#{bundle.ViewRoutepointLabel_routeId}"/>
+					<h:outputText value="#{routepointController.assignedCoordsName}" />
 
+					<f:facet name="footer">
+						<p:commandButton action="#{routepointController.destroyAndView}" value="#{bundle.ViewRoutepointDestroyLink}" ajax="false"/>
+						<p:button outcome="Edit" value="#{bundle.ViewRoutepointEditLink}"/>
+						<p:commandButton action="#{routepointController.prepareCreate}" value="#{bundle.ViewRoutepointCreateLink}"  ajax="false"/>
+						<p:commandButton action="#{routepointController.prepareList}" value="#{bundle.ViewRoutepointShowAllLink}" ajax="false"/>
+						<p:button outcome="/index" value="#{bundle.ViewRoutepointIndexLink}"/>
+					</f:facet>
+
+				</p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

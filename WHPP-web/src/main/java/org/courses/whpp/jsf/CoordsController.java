@@ -17,10 +17,16 @@ import org.courses.whpp.jsf.util.JsfUtil;
 import org.courses.whpp.jsf.util.PaginationHelper;
 import org.courses.whpp.session.CoordsFacade;
 import org.primefaces.event.map.PointSelectEvent;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 @ManagedBean(name = "coordsController")
 @SessionScoped
 public class CoordsController implements Serializable {
+
+	private MapModel mapModel;
 
 	private Coords current;
 
@@ -179,6 +185,18 @@ public class CoordsController implements Serializable {
 			items = getPagination().createPageDataModel();
 		}
 		return items;
+	}
+
+	public MapModel getMapModel() {
+		mapModel = new DefaultMapModel();
+
+
+		LatLng coord1 = new LatLng(current.getLatitude(), current.getLongitude());
+
+		//Basic marker
+		mapModel.addOverlay(new Marker(coord1, current.getAddress()));
+
+		return mapModel;
 	}
 
 	private void recreateModel() {

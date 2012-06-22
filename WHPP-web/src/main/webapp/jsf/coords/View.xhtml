@@ -59,7 +59,11 @@
 
 					<p:row>
 						<p:column colspan="2" style="text-align: center">
-							<p:gmap center="#{coordsController.latlng}" zoom="15" type="HYBRID" style="width:500px;height:350px" />
+							<p:gmap center="#{coordsController.latlng}" zoom="15" type="HYBRID"
+									style="width:600px;height:400px"
+									model="#{coordsController.mapModel}" />
+
+<!--							<p:gmap center="#{coordsController.latlng}" zoom="15" type="HYBRID" style="width:500px;height:350px" />-->
 						</p:column>
 					</p:row>
 

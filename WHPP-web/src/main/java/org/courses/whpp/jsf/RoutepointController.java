@@ -78,8 +78,19 @@ public class RoutepointController implements Serializable {
 
 	public String prepareCreate() {
 		current = new Routepoint();
+		current.setId(1);
 		selectedItemIndex = -1;
 		return "Create";
+	}
+
+	public String getAssignedRouteName() {
+
+		return current.getRouteId().getName();
+	}
+
+	public String getAssignedCoordsName() {
+
+		return current.getCoordsId().getAddress();
 	}
 
 	public String create() {

@@ -20,8 +20,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Roman Kostyrko <nubaseg@gmail.com>
- * Created on Jun 13, 2012, 8:06:19 PM
+ * @author Roman Kostyrko <nubaseg@gmail.com> Created on Jun 13, 2012, 8:06:19
+ * PM
  */
 @Entity
 @Table(name = "route"/*, catalog = "wh1", schema = ""*/)
@@ -31,19 +31,20 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Route.findById", query = "SELECT r FROM Route r WHERE r.id = :id"),
 	@NamedQuery(name = "Route.findByName", query = "SELECT r FROM Route r WHERE r.name = :name")})
 public class Route implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "ID", nullable = false)
 	private Integer id;
 
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "NAME", nullable = false, length = 100)
+	@NotNull
+	@Size(min = 1, max = 100)
+	@Column(name = "NAME", nullable = false, length = 100)
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "routeId")
@@ -120,7 +121,6 @@ public class Route implements Serializable {
 
 	@Override
 	public String toString() {
-		return "org.courses.whpp.entity.Route[ id=" + id + " ]";
+		return name;
 	}
-
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.courses.whpp.session;
 
 import java.util.Date;
@@ -37,7 +33,6 @@ public class WorktimeFacade extends AbstractFacade<Worktime> {
 
 	public WorktimeFacade() {
 		super(Worktime.class);
-		employeeFacade = new EmployeeFacade();
 	}
 
 	public List<Worktime> findOpenedByEmployeeId(Employee EmployeeId) {

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -12,59 +13,55 @@
         <ui:define name="body">
 			<h:form styleClass="jsfcrud_list_form">
 				<h:panelGroup id="messagePanel" layout="block">
-					<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+					<p:messages id="messages" showDetail="true" autoUpdate="true"/>
 				</h:panelGroup>
 				<h:outputText escape="false" value="#{bundle.ListWorktimeEmpty}" rendered="#{worktimeController.items.rowCount == 0}"/>
 				<h:panelGroup rendered="#{worktimeController.items.rowCount > 0}">
-					<h:outputText value="#{worktimeController.pagination.pageFirstItem + 1}..#{worktimeController.pagination.pageLastItem + 1}/#{worktimeController.pagination.itemsCount}"/>&nbsp;
-					<h:commandLink action="#{worktimeController.previous}" value="#{bundle.Previous} #{worktimeController.pagination.pageSize}" rendered="#{worktimeController.pagination.hasPreviousPage}"/>&nbsp;
-					<h:commandLink action="#{worktimeController.next}" value="#{bundle.Next} #{worktimeController.pagination.pageSize}" rendered="#{worktimeController.pagination.hasNextPage}"/>&nbsp;
-					<h:dataTable value="#{worktimeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{bundle.ListWorktimeTitle_id}"/>
-							</f:facet>
+					<p:dataTable value="#{worktimeController.items}" var="item"
+								 resizableColumns="true"
+								 emptyMessage="&nbsp;"
+								 style="width: 100%">
+						<f:facet name="header">
+							<h:outputText value="#{worktimeController.pagination.pageFirstItem + 1}..#{worktimeController.pagination.pageLastItem + 1}/#{worktimeController.pagination.itemsCount}"/>&nbsp;
+							<h:commandLink action="#{worktimeController.previous}" value="#{bundle.Previous} #{worktimeController.pagination.pageSize}" rendered="#{worktimeController.pagination.hasPreviousPage}"/>&nbsp;
+							<h:commandLink action="#{worktimeController.next}" value="#{bundle.Next} #{worktimeController.pagination.pageSize}" rendered="#{worktimeController.pagination.hasNextPage}"/>&nbsp;
+						</f:facet>
+
+						<p:column headerText="#{bundle.ListWorktimeTitle_id}" rendered="true" style="width: 10%">
 							<h:outputText value="#{item.id}"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{bundle.ListWorktimeTitle_intime}"/>
-							</f:facet>
+						</p:column>
+
+						<p:column headerText="#{bundle.ListWorktimeTitle_intime}" rendered="true" >
 							<h:outputText value="#{item.intime}">
 								<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
 							</h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{bundle.ListWorktimeTitle_outtime}"/>
-							</f:facet>
+						</p:column>
+
+						<p:column headerText="#{bundle.ListWorktimeTitle_outtime}" rendered="true" >
 							<h:outputText value="#{item.outtime}">
 								<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
 							</h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{bundle.ListWorktimeTitle_empId}"/>
-							</f:facet>
+						</p:column>
+
+						<p:column headerText="#{bundle.ListWorktimeTitle_empId}" rendered="true" style="width: 10%">
 							<h:outputText value="#{item.empId}"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="&nbsp;"/>
-							</f:facet>
+						</p:column>
+
+						<p:column rendered="true">
 							<h:commandLink action="#{worktimeController.prepareView}" value="#{bundle.ListWorktimeViewLink}"/>
 							<h:outputText value=" "/>
 							<h:commandLink action="#{worktimeController.prepareEdit}" value="#{bundle.ListWorktimeEditLink}"/>
 							<h:outputText value=" "/>
 							<h:commandLink action="#{worktimeController.destroy}" value="#{bundle.ListWorktimeDestroyLink}"/>
-						</h:column>
-					</h:dataTable>
+						</p:column>
+					</p:dataTable>
 				</h:panelGroup>
-				<br />
-				<h:commandLink action="#{worktimeController.prepareCreate}" value="#{bundle.ListWorktimeCreateLink}"/>
-				<br />
-				<br />
-				<h:link outcome="/index" value="#{bundle.ListWorktimeIndexLink}"/>
+
+				<p:panelGrid columns="1" >
+					<f:facet name="footer">
+						<p:commandButton  action="#{worktimeController.prepareCreate}" value="#{bundle.ListWorktimeCreateLink}" ajax="false"/>
+					</f:facet>
+				</p:panelGrid>
 			</h:form>
         </ui:define>
     </ui:composition>

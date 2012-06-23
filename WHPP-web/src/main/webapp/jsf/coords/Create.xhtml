@@ -29,7 +29,7 @@
 
 					<p:row>
 						<p:column >
-							<h:outputLabel value="#{bundle.CreateCoordsLabel_latitude}" for="latitude" />
+							<p:outputLabel value="#{bundle.CreateCoordsLabel_latitude}" for="latitude" />
 						</p:column>
 						<p:column>
 							<p:inputText id="latitude" value="#{coordsController.selected.latitude}" title="#{bundle.CreateCoordsTitle_latitude}" required="true" requiredMessage="#{bundle.CreateCoordsRequiredMessage_latitude}"/>
@@ -38,7 +38,7 @@
 
 					<p:row>
 						<p:column >
-							<h:outputLabel value="#{bundle.CreateCoordsLabel_longitude}" for="longitude" />
+							<p:outputLabel value="#{bundle.CreateCoordsLabel_longitude}" for="longitude" />
 						</p:column>
 						<p:column>
 							<p:inputText id="longitude" value="#{coordsController.selected.longitude}" title="#{bundle.CreateCoordsTitle_longitude}" required="true" requiredMessage="#{bundle.CreateCoordsRequiredMessage_longitude}"/>
@@ -53,7 +53,7 @@
 
 					<p:row>
 						<p:column >
-							<h:outputLabel value="#{bundle.CreateCoordsLabel_address}" for="address" />
+							<p:outputLabel value="#{bundle.CreateCoordsLabel_address}" for="address" />
 						</p:column>
 						<p:column>
 							<p:inputText id="address" value="#{coordsController.selected.address}" title="#{bundle.CreateCoordsTitle_address}" required="true" requiredMessage="#{bundle.CreateCoordsRequiredMessage_address}"/>
@@ -66,7 +66,6 @@
 							<p:column colspan="2">
 								<p:commandButton action="#{coordsController.create}" value="#{bundle.CreateCoordsSaveLink}" ajax="false"/>
 								<p:commandButton action="#{coordsController.prepareList}" value="#{bundle.CreateCoordsShowAllLink}" immediate="true" ajax="false"/>
-								<p:button outcome="/index" value="#{bundle.CreateCoordsIndexLink}"/>
 							</p:column>
 						</p:row>
 					</f:facet>

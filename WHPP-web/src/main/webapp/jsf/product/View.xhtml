@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -11,10 +12,13 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                <p:messages id="messages" showDetail="true" autoUpdate="true"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.ViewProductTitle}
+					</f:facet>
                     <h:outputText value="#{bundle.ViewProductLabel_id}"/>
                     <h:outputText value="#{productController.selected.id}" title="#{bundle.ViewProductTitle_id}"/>
                     <h:outputText value="#{bundle.ViewProductLabel_name}"/>
@@ -29,20 +33,13 @@
                     <h:outputText value="#{productController.selected.manufacturer}" title="#{bundle.ViewProductTitle_manufacturer}"/>
                     <h:outputText value="#{bundle.ViewProductLabel_category}"/>
                     <h:outputText value="#{productController.selected.category}" title="#{bundle.ViewProductTitle_category}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{productController.destroyAndView}" value="#{bundle.ViewProductDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewProductEditLink}"/>
-                <br />
-                <h:commandLink action="#{productController.prepareCreate}" value="#{bundle.ViewProductCreateLink}" />
-                <br />
-                <h:commandLink action="#{productController.prepareList}" value="#{bundle.ViewProductShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewProductIndexLink}"/>
-
+					<f:facet name="footer">
+						<p:commandButton action="#{productController.destroyAndView}" value="#{bundle.ViewProductDestroyLink}" ajax="false"/>
+						<p:button outcome="Edit" value="#{bundle.ViewProductEditLink}"/>
+						<p:commandButton action="#{productController.prepareCreate}" value="#{bundle.ViewProductCreateLink}"  ajax="false"/>
+						<p:commandButton action="#{productController.prepareList}" value="#{bundle.ViewProductShowAllLink}" ajax="false"/>
+					</f:facet>
+				</p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

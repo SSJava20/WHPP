@@ -19,24 +19,23 @@
 					<f:facet name="header">
 						#{bundle.CreateClientTitle}
 					</f:facet>
-					<h:outputLabel value="#{bundle.CreateClientLabel_name}" for="name" />
+					<p:outputLabel value="#{bundle.CreateClientLabel_name}" for="name" />
                     <p:inputText id="name" value="#{clientController.selected.name}" title="#{bundle.CreateClientTitle_name}" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.CreateClientLabel_address}" for="address" />
+                    <p:outputLabel value="#{bundle.CreateClientLabel_address}" for="address" />
                     <p:inputText id="address" value="#{clientController.selected.address}" title="#{bundle.CreateClientTitle_address}" />
-                    <h:outputLabel value="#{bundle.CreateClientLabel_phone}" for="phone" />
+                    <p:outputLabel value="#{bundle.CreateClientLabel_phone}" for="phone" />
                     <p:inputText id="phone" value="#{clientController.selected.phone}" title="#{bundle.CreateClientTitle_phone}" />
-                    <h:outputLabel value="#{bundle.CreateClientLabel_email}" for="email" />
+                    <p:outputLabel value="#{bundle.CreateClientLabel_email}" for="email" />
                     <p:inputText id="email" value="#{clientController.selected.email}" title="#{bundle.CreateClientTitle_email}" />
-                    <h:outputLabel value="#{bundle.CreateClientLabel_comment}" for="comment" />
+                    <p:outputLabel value="#{bundle.CreateClientLabel_comment}" for="comment" />
                     <p:inputText id="comment" value="#{clientController.selected.comment}" title="#{bundle.CreateClientTitle_comment}" />
-                    <h:outputLabel value="#{bundle.CreateClientLabel_usrId}" for="usrId" />
+                    <p:outputLabel value="#{bundle.CreateClientLabel_usrId}" for="usrId" />
 					<p:selectOneMenu id="usrId" value="#{clientController.selected.usrId}" effect="fade" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_usrId}">
 						<f:selectItems value="#{userController.itemsAvailableSelectOne}" />
 					</p:selectOneMenu>
 					<f:facet name="footer">
 						<p:commandButton action="#{clientController.create}" value="#{bundle.CreateClientSaveLink}" ajax="false"/>
 						<p:commandButton action="#{clientController.prepareList}" value="#{bundle.CreateClientShowAllLink}" immediate="true" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.CreateClientIndexLink}"/>
 					</f:facet>
                 </p:panelGrid>
 

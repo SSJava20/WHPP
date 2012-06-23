@@ -12,7 +12,7 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                <p:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
 
             <h:form>
@@ -21,16 +21,15 @@
 						#{bundle.EditPositionTitle}
 					</f:facet>
 
-                    <h:outputLabel value="#{bundle.EditPositionLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{positionController.selected.name}" title="#{bundle.EditPositionTitle_name}" required="true" requiredMessage="#{bundle.EditPositionRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.EditPositionLabel_description}" for="description" />
-                    <h:inputText id="description" value="#{positionController.selected.description}" title="#{bundle.EditPositionTitle_description}" />
+                    <p:outputLabel value="#{bundle.EditPositionLabel_name}" for="name" />
+                    <p:inputText id="name" value="#{positionController.selected.name}" title="#{bundle.EditPositionTitle_name}" required="true" requiredMessage="#{bundle.EditPositionRequiredMessage_name}"/>
+                    <p:outputLabel value="#{bundle.EditPositionLabel_description}" for="description" />
+                    <p:inputText id="description" value="#{positionController.selected.description}" title="#{bundle.EditPositionTitle_description}" />
 
 					<f:facet name="footer">
 						<p:commandButton action="#{positionController.update}" value="#{bundle.EditPositionSaveLink}" ajax="false"/>
 						<p:button outcome="View" value="#{bundle.EditPositionViewLink}"/>
 						<p:commandButton action="#{positionController.prepareList}" value="#{bundle.EditPositionShowAllLink}" immediate="true" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.EditPositionIndexLink}" />
 					</f:facet>
 				</p:panelGrid>
             </h:form>

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -11,10 +12,14 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+				<p:messages id="messages" showDetail="true" autoUpdate="true"/>
+			</h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.ViewWorktimeTitle}
+					</f:facet>
+
                     <h:outputText value="#{bundle.ViewWorktimeLabel_id}"/>
                     <h:outputText value="#{worktimeController.selected.id}" title="#{bundle.ViewWorktimeTitle_id}"/>
                     <h:outputText value="#{bundle.ViewWorktimeLabel_intime}"/>
@@ -27,20 +32,14 @@
                     </h:outputText>
                     <h:outputText value="#{bundle.ViewWorktimeLabel_empId}"/>
                     <h:outputText value="#{worktimeController.selected.empId}" title="#{bundle.ViewWorktimeTitle_empId}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{worktimeController.destroyAndView}" value="#{bundle.ViewWorktimeDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewWorktimeEditLink}"/>
-                <br />
-                <h:commandLink action="#{worktimeController.prepareCreate}" value="#{bundle.ViewWorktimeCreateLink}" />
-                <br />
-                <h:commandLink action="#{worktimeController.prepareList}" value="#{bundle.ViewWorktimeShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewWorktimeIndexLink}"/>
 
+					<f:facet name="footer">
+						<p:commandButton action="#{worktimeController.destroyAndView}" value="#{bundle.ViewWorktimeDestroyLink}" ajax="false"/>
+						<p:button outcome="Edit" value="#{bundle.ViewWorktimeEditLink}"/>
+						<p:commandButton action="#{worktimeController.prepareCreate}" value="#{bundle.ViewWorktimeCreateLink}" ajax="false"/>
+						<p:commandButton action="#{worktimeController.prepareList}" value="#{bundle.ViewWorktimeShowAllLink}" ajax="false"/>
+					</f:facet>
+				</p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

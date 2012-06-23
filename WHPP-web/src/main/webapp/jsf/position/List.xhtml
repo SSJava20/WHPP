@@ -22,11 +22,7 @@
 								 resizableColumns="true"
 								 emptyMessage="&nbsp;"
 								 style="width: 100%">
-						<f:facet name="header">
-							<h:outputText value="#{positionController.pagination.pageFirstItem + 1}..#{positionController.pagination.pageLastItem + 1}/#{positionController.pagination.itemsCount}"/>&nbsp;
-							<h:commandLink action="#{positionController.previous}" value="#{bundle.Previous} #{positionController.pagination.pageSize}" rendered="#{positionController.pagination.hasPreviousPage}"/>&nbsp;
-							<h:commandLink action="#{positionController.next}" value="#{bundle.Next} #{positionController.pagination.pageSize}" rendered="#{positionController.pagination.hasNextPage}"/>&nbsp;
-						</f:facet>
+
 
 						<p:column headerText="#{bundle.ListPositionTitle_id}" rendered="true" style="width: 10%">
 							<h:outputText value="#{item.id}"/>
@@ -50,7 +46,6 @@
 				<p:panelGrid columns="1" >
 					<f:facet name="footer">
 						<p:commandButton action="#{positionController.prepareCreate}" value="#{bundle.ListPositionCreateLink}" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.ListPositionIndexLink}"/>
 					</f:facet>
 				</p:panelGrid>
 

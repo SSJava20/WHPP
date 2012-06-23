@@ -18,19 +18,18 @@
 					<f:facet name="header">
 						#{bundle.CreateCategoryTitle}
 					</f:facet>
-                    <h:outputLabel value="#{bundle.CreateManufacturerLabel_name}" for="name" />
+                    <p:outputLabel value="#{bundle.CreateManufacturerLabel_name}" for="name" />
                     <p:inputText id="name" value="#{manufacturerController.selected.name}" title="#{bundle.CreateManufacturerTitle_name}" required="true" requiredMessage="#{bundle.CreateManufacturerRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.CreateManufacturerLabel_descr}" for="descr" />
+                    <p:outputLabel value="#{bundle.CreateManufacturerLabel_descr}" for="descr" />
                     <p:inputText id="descr" value="#{manufacturerController.selected.descr}" title="#{bundle.CreateManufacturerTitle_descr}" />
-                    <h:outputLabel value="#{bundle.CreateManufacturerLabel_adrress}" for="adrress" />
+                    <p:outputLabel value="#{bundle.CreateManufacturerLabel_adrress}" for="adrress" />
                     <p:inputText id="adrress" value="#{manufacturerController.selected.adrress}" title="#{bundle.CreateManufacturerTitle_adrress}" required="true" requiredMessage="#{bundle.CreateManufacturerRequiredMessage_adrress}"/>
-                    <h:outputLabel value="#{bundle.CreateManufacturerLabel_site}" for="site" />
+                    <p:outputLabel value="#{bundle.CreateManufacturerLabel_site}" for="site" />
                     <p:inputText id="site" value="#{manufacturerController.selected.site}" title="#{bundle.CreateManufacturerTitle_site}" required="true" requiredMessage="#{bundle.CreateManufacturerRequiredMessage_site}"/>
 
 					<f:facet name="footer">
 						<p:commandButton action="#{manufacturerController.create}" value="#{bundle.CreateManufacturerSaveLink}"  ajax="false" />
 						<p:commandButton action="#{manufacturerController.prepareList}" value="#{bundle.CreateManufacturerShowAllLink}" immediate="true" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.CreateManufacturerIndexLink}" ajax="false"/>
 					</f:facet>
 				</p:panelGrid>
 				

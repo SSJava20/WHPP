@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -11,34 +12,32 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                <p:messages id="messages" showDetail="true" autoUpdate="true"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditWorktimeLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{worktimeController.selected.id}" title="#{bundle.EditWorktimeTitle_id}" required="true" requiredMessage="#{bundle.EditWorktimeRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditWorktimeLabel_intime}" for="intime" />
-                    <h:inputText id="intime" value="#{worktimeController.selected.intime}" title="#{bundle.EditWorktimeTitle_intime}" required="true" requiredMessage="#{bundle.EditWorktimeRequiredMessage_intime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditWorktimeLabel_outtime}" for="outtime" />
-                    <h:inputText id="outtime" value="#{worktimeController.selected.outtime}" title="#{bundle.EditWorktimeTitle_outtime}" required="true" requiredMessage="#{bundle.EditWorktimeRequiredMessage_outtime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditWorktimeLabel_empId}" for="empId" />
-                    <h:selectOneMenu id="empId" value="#{worktimeController.selected.empId}" title="#{bundle.EditWorktimeTitle_empId}" required="true" requiredMessage="#{bundle.EditWorktimeRequiredMessage_empId}">
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+						#{bundle.CreateWorktimeTitle}
+					</f:facet>
+                    <p:outputLabel value="#{bundle.CreateWorktimeLabel_intime}" for="intime" />
+					<p:calendar pattern="MM/dd/yyyy HH:mm:ss" id="intime" value="#{worktimeController.selected.intime}" title="#{bundle.CreateWorktimeTitle_intime}" required="true" requiredMessage="#{bundle.CreateWorktimeRequiredMessage_intime}">
+						<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+					</p:calendar>
+                    <p:outputLabel value="#{bundle.CreateWorktimeLabel_outtime}" for="outtime" />
+                    <p:calendar pattern="MM/dd/yyyy HH:mm:ss" id="intime" value="#{worktimeController.selected.outtime}" title="#{bundle.CreateWorktimeTitle_intime}" required="true" requiredMessage="#{bundle.CreateWorktimeRequiredMessage_intime}">
+						<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+					</p:calendar>
+                    <p:outputLabel value="#{bundle.CreateWorktimeLabel_empId}" for="empId" />
+                    <p:selectOneMenu id="empId" value="#{worktimeController.selected.empId}" title="#{bundle.CreateWorktimeTitle_empId}" required="true" requiredMessage="#{bundle.CreateWorktimeRequiredMessage_empId}">
                         <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{worktimeController.update}" value="#{bundle.EditWorktimeSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditWorktimeViewLink}"/>
-                <br />
-                <h:commandLink action="#{worktimeController.prepareList}" value="#{bundle.EditWorktimeShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditWorktimeIndexLink}" />
+                    </p:selectOneMenu>
+
+					<f:facet name="footer">
+						<p:commandButton action="#{worktimeController.update}" value="#{bundle.EditWorktimeSaveLink}" ajax="false"/>
+						<p:button outcome="View" value="#{bundle.EditWorktimeViewLink}"/>
+						<p:commandButton action="#{worktimeController.prepareList}" value="#{bundle.EditWorktimeShowAllLink}" immediate="true" ajax="false"/>
+					</f:facet>
+                </p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

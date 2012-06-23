@@ -78,6 +78,7 @@ public class WorktimeController implements Serializable {
 
 	public String prepareCreate() {
 		current = new Worktime();
+		current.setId(1);
 		selectedItemIndex = -1;
 		return "Create";
 	}

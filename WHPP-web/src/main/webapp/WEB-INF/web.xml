@@ -29,16 +29,12 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
-    <security-role>
-        <description/>
-        <role-name>admins</role-name>
-    </security-role>
     <security-constraint>
         <display-name>Constraint1</display-name>
         <web-resource-collection>
             <web-resource-name>all</web-resource-name>
             <description/>
-            <url-pattern>/</url-pattern>
+            <url-pattern>/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
@@ -46,12 +42,13 @@
         </auth-constraint>
     </security-constraint>
     <security-constraint>
-        <display-name>usr</display-name>
+        <display-name>Constraint2</display-name>
         <web-resource-collection>
-            <web-resource-name>userskie</web-resource-name>
+            <web-resource-name>usr</web-resource-name>
             <description/>
-            <url-pattern>//employee</url-pattern>
-            <url-pattern>/coords</url-pattern>
+            <url-pattern>/position/*</url-pattern>
+            <url-pattern>/coords/*</url-pattern>
+            <url-pattern>/index.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
@@ -65,5 +62,9 @@
     <security-role>
         <description/>
         <role-name>users</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>admins</role-name>
     </security-role>
 </web-app>

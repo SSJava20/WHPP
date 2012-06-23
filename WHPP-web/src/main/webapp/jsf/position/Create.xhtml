@@ -21,15 +21,14 @@
 						#{bundle.CreatePositionTitle}
 					</f:facet>
 
-					<h:outputLabel value="#{bundle.CreatePositionLabel_name}" for="name" />
+					<p:outputLabel value="#{bundle.CreatePositionLabel_name}" for="name" />
                     <p:inputText id="name" value="#{positionController.selected.name}" title="#{bundle.CreatePositionTitle_name}" required="true" requiredMessage="#{bundle.CreatePositionRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.CreatePositionLabel_description}" for="description" />
+                    <p:outputLabel value="#{bundle.CreatePositionLabel_description}" for="description" />
                     <p:inputText id="description" value="#{positionController.selected.description}" title="#{bundle.CreatePositionTitle_description}" />
 
 					<f:facet name="footer">
 						<p:commandButton action="#{positionController.create}" value="#{bundle.CreatePositionSaveLink}"  ajax="false" />
 						<p:commandButton action="#{positionController.prepareList}" value="#{bundle.CreatePositionShowAllLink}" immediate="true" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.CreatePositionIndexLink}" ajax="false"/>
 					</f:facet>
 				</p:panelGrid>
             </h:form>

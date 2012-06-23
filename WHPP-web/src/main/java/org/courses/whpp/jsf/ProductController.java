@@ -78,6 +78,7 @@ public class ProductController implements Serializable {
 
 	public String prepareCreate() {
 		current = new Product();
+		current.setId(1);
 		selectedItemIndex = -1;
 		return "Create";
 	}

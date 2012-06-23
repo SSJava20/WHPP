@@ -12,7 +12,7 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                <p:messages id="messages" showDetail="true" autoUpdate="true"/>
             </h:panelGroup>
             <h:form>
                 <p:panelGrid columns="2">
@@ -30,7 +30,6 @@
 						<p:button outcome="Edit" value="#{bundle.ViewPositionEditLink}"/>
 						<p:commandButton action="#{positionController.prepareCreate}" value="#{bundle.ViewPositionCreateLink}"  ajax="false"/>
 						<p:commandButton action="#{positionController.prepareList}" value="#{bundle.ViewPositionShowAllLink}" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.ViewPositionIndexLink}"/>
 					</f:facet>
 				</p:panelGrid>
             </h:form>

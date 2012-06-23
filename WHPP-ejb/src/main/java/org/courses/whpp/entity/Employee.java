@@ -248,7 +248,7 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		return "org.courses.whpp.entity.Employee[ id=" + id + " ]";
+		return fname+" "+lname;
 	}
 
 }

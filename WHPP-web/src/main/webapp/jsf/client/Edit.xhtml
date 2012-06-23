@@ -19,17 +19,17 @@
 					<f:facet name="header">
 						#{bundle.EditClientTitle}
 					</f:facet>
-					<h:outputLabel value="#{bundle.EditClientLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{clientController.selected.name}" title="#{bundle.EditClientTitle_name}" required="true" requiredMessage="#{bundle.EditClientRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.EditClientLabel_address}" for="address" />
+					<p:outputLabel value="#{bundle.EditClientLabel_name}" for="name" />
+                    <p:inputText id="name" value="#{clientController.selected.name}" title="#{bundle.EditClientTitle_name}" required="true" requiredMessage="#{bundle.EditClientRequiredMessage_name}"/>
+                    <p:outputLabel value="#{bundle.EditClientLabel_address}" for="address" />
                     <p:inputText id="address" value="#{clientController.selected.address}" title="#{bundle.EditClientTitle_address}" />
-                    <h:outputLabel value="#{bundle.EditClientLabel_phone}" for="phone" />
+                    <p:outputLabel value="#{bundle.EditClientLabel_phone}" for="phone" />
                     <p:inputText id="phone" value="#{clientController.selected.phone}" title="#{bundle.EditClientTitle_phone}" />
-                    <h:outputLabel value="#{bundle.EditClientLabel_email}" for="email" />
+                    <p:outputLabel value="#{bundle.EditClientLabel_email}" for="email" />
                     <p:inputText id="email" value="#{clientController.selected.email}" title="#{bundle.EditClientTitle_email}" />
-                    <h:outputLabel value="#{bundle.EditClientLabel_comment}" for="comment" />
+                    <p:outputLabel value="#{bundle.EditClientLabel_comment}" for="comment" />
                     <p:inputText id="comment" value="#{clientController.selected.comment}" title="#{bundle.EditClientTitle_comment}" />
-                    <h:outputLabel value="#{bundle.EditClientLabel_usrId}" for="usrId" />
+                    <p:outputLabel value="#{bundle.EditClientLabel_usrId}" for="usrId" />
                     <p:selectOneMenu id="usrId" value="#{clientController.selected.usrId}" effect="fade" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_usrId}">
 						<f:selectItems value="#{userController.itemsAvailableSelectOne}" />
 					</p:selectOneMenu>
@@ -37,7 +37,6 @@
 						<p:commandButton action="#{clientController.update}" value="#{bundle.EditClientSaveLink}" ajax="false"/>
 						<p:button outcome="View" value="#{bundle.EditClientViewLink}"/>
 						<p:commandButton action="#{clientController.prepareList}" value="#{bundle.EditClientShowAllLink}" immediate="true" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.EditClientIndexLink}" />
 					</f:facet>
                 </p:panelGrid>
             </h:form>

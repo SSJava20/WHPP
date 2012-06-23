@@ -153,7 +153,7 @@ public class Manufacturer implements Serializable {
 
 	@Override
 	public String toString() {
-		return "org.courses.whpp.entity.Manufacturer[ id=" + id + " ]";
+		return name;
 	}
 
 }

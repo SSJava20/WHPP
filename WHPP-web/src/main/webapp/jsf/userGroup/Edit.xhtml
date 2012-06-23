@@ -21,14 +21,13 @@
 						#{bundle.EditUserGroupTitle}
 					</f:facet>
 
-                    <h:outputLabel value="#{bundle.EditUserGroupLabel_groupid}" for="groupid" />
+                    <p:outputLabel value="#{bundle.EditUserGroupLabel_groupid}" for="groupid" />
                     <p:inputText id="groupid" value="#{userGroupController.selected.groupid}" title="#{bundle.EditUserGroupTitle_groupid}" required="true" requiredMessage="#{bundle.EditUserGroupRequiredMessage_groupid}"/>
 
 					<f:facet name="footer">
 						<p:commandButton action="#{userGroupController.update}" value="#{bundle.EditUserGroupSaveLink}" ajax="false"/>
 						<p:button outcome="View" value="#{bundle.EditUserGroupViewLink}"/>
 						<p:commandButton action="#{userGroupController.prepareList}" value="#{bundle.EditUserGroupShowAllLink}" immediate="true" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.EditUserGroupIndexLink}"/>
 					</f:facet>
 				</p:panelGrid>
             </h:form>

@@ -20,16 +20,15 @@
 						#{bundle.EditUserTitle}
 					</f:facet>
 
-                    <h:outputLabel value="#{bundle.EditUserLabel_userid}" for="userid" />
+                    <p:outputLabel value="#{bundle.EditUserLabel_userid}" for="userid" />
                     <p:inputText id="userid" value="#{userController.selected.userid}" title="#{bundle.EditUserTitle_userid}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_userid}"/>
-                    <h:outputLabel value="#{bundle.EditUserLabel_password}" for="password" />
+                    <p:outputLabel value="#{bundle.EditUserLabel_password}" for="password" />
 					<p:password id="feedback" value="#{userController.selected.password}" feedback="true"/>
 
 					<f:facet name="footer">
 						<p:commandButton action="#{userController.update}" value="#{bundle.EditUserSaveLink}" ajax="false"/>
 						<p:button outcome="View" value="#{bundle.EditUserViewLink}"/>
 						<p:commandButton action="#{userController.prepareList}" value="#{bundle.EditUserShowAllLink}" immediate="true" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.EditUserIndexLink}" />
 					</f:facet>
 				</p:panelGrid>
             </h:form>

@@ -19,20 +19,19 @@
 					<f:facet name="header">
 						#{bundle.EditCategoryTitle}
 					</f:facet>
-                    <h:outputLabel value="#{bundle.EditManufacturerLabel_name}" for="name" />
+                    <p:outputLabel value="#{bundle.EditManufacturerLabel_name}" for="name" />
                     <p:inputText id="name" value="#{manufacturerController.selected.name}" title="#{bundle.EditManufacturerTitle_name}" required="true" requiredMessage="#{bundle.EditManufacturerRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.EditManufacturerLabel_descr}" for="descr" />
+                    <p:outputLabel value="#{bundle.EditManufacturerLabel_descr}" for="descr" />
                     <p:inputText id="descr" value="#{manufacturerController.selected.descr}" title="#{bundle.EditManufacturerTitle_descr}" />
-                    <h:outputLabel value="#{bundle.EditManufacturerLabel_adrress}" for="adrress" />
+                    <p:outputLabel value="#{bundle.EditManufacturerLabel_adrress}" for="adrress" />
                     <p:inputText id="adrress" value="#{manufacturerController.selected.adrress}" title="#{bundle.EditManufacturerTitle_adrress}" required="true" requiredMessage="#{bundle.EditManufacturerRequiredMessage_adrress}"/>
-                    <h:outputLabel value="#{bundle.EditManufacturerLabel_site}" for="site" />
+                    <p:outputLabel value="#{bundle.EditManufacturerLabel_site}" for="site" />
                     <p:inputText id="site" value="#{manufacturerController.selected.site}" title="#{bundle.EditManufacturerTitle_site}" required="true" requiredMessage="#{bundle.EditManufacturerRequiredMessage_site}"/>
 
 					<f:facet name="footer">
 						<p:commandButton action="#{manufacturerController.update}" value="#{bundle.EditManufacturerSaveLink}" ajax="false"/>
 						<p:button outcome="View" value="#{bundle.EditManufacturerViewLink}"/>
 						<p:commandButton action="#{manufacturerController.prepareList}" value="#{bundle.EditManufacturerShowAllLink}" immediate="true" ajax="false"/>
-						<p:button outcome="/index" value="#{bundle.EditManufacturerIndexLink}" />
 					</f:facet>
 				</p:panelGrid>
             </h:form>

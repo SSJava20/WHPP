@@ -24,15 +24,11 @@
                     <h:outputText value="#{bundle.ViewRouteLabel_name}"/>
                     <h:outputText value="#{routeController.selected.name}" title="#{bundle.ViewRouteTitle_name}"/>
 
-					<p:column colspan="2" style="text-align: center">
-						<p:gmap center="#{routeController.latlng}" zoom="15" type="HYBRID"
-								style="width:600px;height:400px"
-								model="#{routeController.mapModel}" />
-					</p:column>
-<!--TODO -->
-					<ui:repeat value="#{routeController.selected.routepointList}" var="item">
-						<h:outputText value="#{item}"/>
-					</ui:repeat>
+					<p:gmap center="#{routeController.latlng}" zoom="15" type="HYBRID"
+							style="width:600px;height:400px"
+							model="#{routeController.mapModel}" />
+					<!--TODO -->
+
 
 					<f:facet name="footer">
 						<p:commandButton action="#{routeController.destroyAndView}" value="#{bundle.ViewRouteDestroyLink}" ajax="false"/>

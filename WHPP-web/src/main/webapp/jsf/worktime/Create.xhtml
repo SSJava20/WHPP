@@ -24,7 +24,7 @@
 						<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
 					</p:calendar>
                     <p:outputLabel value="#{bundle.CreateWorktimeLabel_outtime}" for="outtime" />
-                    <p:calendar pattern="MM/dd/yyyy HH:mm:ss" id="intime" value="#{worktimeController.selected.outtime}" title="#{bundle.CreateWorktimeTitle_intime}" required="true" requiredMessage="#{bundle.CreateWorktimeRequiredMessage_intime}">
+                    <p:calendar pattern="MM/dd/yyyy HH:mm:ss" id="outtime" value="#{worktimeController.selected.outtime}" title="#{bundle.CreateWorktimeTitle_intime}" required="true" requiredMessage="#{bundle.CreateWorktimeRequiredMessage_intime}">
 						<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
 					</p:calendar>
                     <p:outputLabel value="#{bundle.CreateWorktimeLabel_empId}" for="empId" />

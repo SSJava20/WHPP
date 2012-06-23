@@ -17,12 +17,23 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.courses.whpp.entity.Employee;
 
 @ManagedBean(name = "ticketItemController")
 @SessionScoped
 public class TicketItemController implements Serializable {
 
 	private TicketItem current;
+
+	private Employee currentDriver;
+
+	public Employee getCurrentDriver() {
+		return currentDriver;
+	}
+
+	public void setCurrentDriver(Employee currentDriver) {
+		this.currentDriver = currentDriver;
+	}
 
 	private DataModel items = null;
 

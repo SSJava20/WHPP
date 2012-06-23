@@ -19,10 +19,12 @@
 				<h:outputText escape="false" value="#{bundle.ListRouteEmpty}" rendered="#{routeController.items.rowCount == 0}"/>
 
 				<h:panelGroup rendered="#{routeController.items.rowCount > 0}">
+					
 					<p:dataTable value="#{routeController.items}" var="item"
 								 resizableColumns="true"
 								 emptyMessage="&nbsp;"
 								 style="width: 100%">
+
 						<f:facet name="header">
 							<h:outputText value="#{positionController.pagination.pageFirstItem + 1}..#{positionController.pagination.pageLastItem + 1}/#{positionController.pagination.itemsCount}"/>&nbsp;
 							<h:commandLink action="#{positionController.previous}" value="#{bundle.Previous} #{positionController.pagination.pageSize}" rendered="#{positionController.pagination.hasPreviousPage}"/>&nbsp;

@@ -17,7 +17,7 @@ import org.courses.whpp.session.CategoryFacade;
  */
 public class Searcher
 {
-    protected CategoryFacade wFacade;
+    public CategoryFacade wFacade;
 
     public Searcher()
     {

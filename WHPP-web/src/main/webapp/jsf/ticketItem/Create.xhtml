@@ -27,6 +27,11 @@
                     <h:selectOneMenu id="ticketId" value="#{ticketItemController.selected.ticketId}" title="#{bundle.CreateTicketItemTitle_ticketId}" required="true" requiredMessage="#{bundle.CreateTicketItemRequiredMessage_ticketId}">
                         <f:selectItems value="#{ticketController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+
+					<h:selectOneMenu id="driverId" value="#{ticketItemController.currentDriver}" title="#{bundle.CreateTicketItemTitle_driverId}" required="true" requiredMessage="#{bundle.CreateTicketItemRequiredMessage_driverId}">
+                        <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{ticketItemController.create}" value="#{bundle.CreateTicketItemSaveLink}" />

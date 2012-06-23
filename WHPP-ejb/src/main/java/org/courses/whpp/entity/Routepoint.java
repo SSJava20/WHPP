@@ -18,8 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Roman Kostyrko <nubaseg@gmail.com>
- * Created on Jun 13, 2012, 8:06:17 PM
+ * @author Roman Kostyrko <nubaseg@gmail.com> Created on Jun 13, 2012, 8:06:17
+ * PM
  */
 @Entity
 @Table(name = "routepoint"/*, catalog = "wh1", schema = ""*/)
@@ -29,27 +29,28 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@NamedQuery(name = "Routepoint.findById", query = "SELECT r FROM Routepoint r WHERE r.id = :id"),
 	@NamedQuery(name = "Routepoint.findByName", query = "SELECT r FROM Routepoint r WHERE r.name = :name")})
 public class Routepoint implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "ID", nullable = false)
 	private Integer id;
 
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "NAME", nullable = false, length = 50)
+	@NotNull
+	@Size(min = 1, max = 50)
+	@Column(name = "NAME", nullable = false, length = 50)
 	private String name;
 
 	@JoinColumn(name = "ROUTE_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Route routeId;
 
 	@JoinColumn(name = "COORDS_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Coords coordsId;
 
 	public Routepoint() {
@@ -118,7 +119,6 @@ public class Routepoint implements Serializable {
 
 	@Override
 	public String toString() {
-		return "org.courses.whpp.entity.Routepoint[ id=" + id + " ]";
+		return name;
 	}
-
 }

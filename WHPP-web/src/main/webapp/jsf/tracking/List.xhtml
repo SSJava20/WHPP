@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRouteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+			<h:form styleClass="jsfcrud_list_form">
+				<h:panelGroup id="messagePanel" layout="block">
+					<p:messages id="messages" showDetail="true" autoUpdate="true"/>
+				</h:panelGroup>
+
+				<h:outputText escape="false" value="#{bundle.ListRouteEmpty}" rendered="#{trackingController.items.rowCount == 0}"/>
+
+				<h:panelGroup rendered="#{trackingController.items.rowCount > 0}">
+					
+					<p:dataTable value="#{trackingController.items}" var="item"
+								 resizableColumns="true"
+								 emptyMessage="&nbsp;"
+								 style="width: 100%">
+
+						<f:facet name="header">
+							<h:outputText value="#{positionController.pagination.pageFirstItem + 1}..#{positionController.pagination.pageLastItem + 1}/#{positionController.pagination.itemsCount}"/>&nbsp;
+							<h:commandLink action="#{positionController.previous}" value="#{bundle.Previous} #{positionController.pagination.pageSize}" rendered="#{positionController.pagination.hasPreviousPage}"/>&nbsp;
+							<h:commandLink action="#{positionController.next}" value="#{bundle.Next} #{positionController.pagination.pageSize}" rendered="#{positionController.pagination.hasNextPage}"/>&nbsp;
+						</f:facet>
+
+						<p:column headerText="#{bundle.ListRouteTitle_id}" rendered="true" style="width: 10%">
+							<h:outputText value="#{item.id}"/>
+						</p:column>
+
+						<p:column headerText="#{bundle.ListRouteTitle_name}" rendered="true">
+							<h:outputText value="#{item.name}" />
+						</p:column>
+
+						<p:column rendered="true">
+							<h:commandLink action="#{trackingController.prepareView}" value="#{bundle.ListRouteViewLink}"/>
+							<h:outputText value=" "/>
+						</p:column>
+
+					</p:dataTable>
+				</h:panelGroup>
+
+			</h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

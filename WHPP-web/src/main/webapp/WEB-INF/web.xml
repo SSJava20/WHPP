@@ -29,7 +29,7 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
-    <security-constraint>
+<!--    <security-constraint>
         <display-name>Constraint1</display-name>
         <web-resource-collection>
             <web-resource-name>all</web-resource-name>
@@ -66,5 +66,5 @@
     <security-role>
         <description/>
         <role-name>admins</role-name>
-    </security-role>
+    </security-role>-->
 </web-app>

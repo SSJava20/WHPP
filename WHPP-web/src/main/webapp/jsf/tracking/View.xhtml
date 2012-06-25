@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRouteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <p:panelGrid columns="2">
+					<f:facet name="header">
+						#{bundle.ViewRouteTitle}
+					</f:facet>
+                    <h:outputText value="#{bundle.ViewRouteLabel_id}"/>
+                    <h:outputText value="#{trackingController.selected.id}" title="#{bundle.ViewRouteTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewRouteLabel_name}"/>
+                    <h:outputText value="#{trackingController.selected.name}" title="#{bundle.ViewRouteTitle_name}"/>
+
+<!--					<p:gmap center="#{trackingController.latlng}" zoom="15" type="HYBRID"
+							style="width:600px;height:400px"
+							model="#{trackingController.mapModel}" />
+					-->
+					<h:form>
+						<p:growl id="growl" life="3000"/>
+
+						<p:gmap center="#{trackingController.latlng}" zoom="13" type="HYBRID" style="width:600px;height:400px" model="#{trackingController.mapModel}">
+							<p:ajax event="overlaySelect" listener="#{mapBean.onCircleSelect}" update="growl"/>
+						</p:gmap>
+					</h:form>
+
+					<f:facet name="footer">
+						<p:commandButton action="#{trackingController.prepareList}" value="#{bundle.ViewRouteShowAllLink}" ajax="false"/>
+						<p:button outcome="/index" value="#{bundle.ViewRouteIndexLink}"/>
+					</f:facet>
+
+				</p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -12,13 +12,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.courses.whpp.entity.Employee;
 import org.courses.whpp.entity.Worktime;
+import org.courses.whpp.interfaces.EmployeeFacadeLocal;
+import org.courses.whpp.interfaces.WorkTimeManagerLocal;
+import org.courses.whpp.interfaces.WorktimeFacadeLocal;
 
 /**
  *
  * @author Roman Kostyrko <nubaseg@gmail.com>
  */
 @Stateless
-public class WorkTimeManager  {
+public class WorkTimeManager {
 
 	@EJB
 	private EmployeeFacade employeeFacade;

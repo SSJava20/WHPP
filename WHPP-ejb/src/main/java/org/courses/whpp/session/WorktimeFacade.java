@@ -12,13 +12,15 @@ import org.courses.whpp.entity.Worktime;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import org.courses.whpp.interfaces.EmployeeFacadeLocal;
+import org.courses.whpp.interfaces.WorktimeFacadeLocal;
 
 /**
  * @author Roman Kostyrko <nubaseg@gmail.com> Created on Jun 13, 2012, 8:11:44
  * PM
  */
 @Stateless
-public class WorktimeFacade extends AbstractFacade<Worktime> {
+public class WorktimeFacade extends AbstractFacade<Worktime> implements WorktimeFacadeLocal{
 
 	@EJB
 	private EmployeeFacade employeeFacade;
@@ -35,10 +37,12 @@ public class WorktimeFacade extends AbstractFacade<Worktime> {
 		super(Worktime.class);
 	}
 
+	@Override
 	public List<Worktime> findOpenedByEmployeeId(Employee EmployeeId) {
 		return em.createNamedQuery("Worktime.findOpenedByEmployeeId").setParameter("EmployeeId", EmployeeId).getResultList();
 	}
 
+	@Override
 	public void logIn(Integer EmployeeId) {
 		Employee employeeForId = employeeFacade.find(EmployeeId);
 		List<Worktime> worktimeForId = findOpenedByEmployeeId(employeeForId);
@@ -48,6 +52,7 @@ public class WorktimeFacade extends AbstractFacade<Worktime> {
 		this.create(new Worktime(new Date(), null, employeeForId));
 	}
 
+	@Override
 	public void logOut(Integer EmployeeId) {
 		Employee employeeForId = employeeFacade.find(EmployeeId);
 		if (employeeForId == null) {

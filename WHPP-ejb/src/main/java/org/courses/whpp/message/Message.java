@@ -12,16 +12,16 @@ import java.io.Serializable;
  */
 public class Message implements Serializable {
 
-	public Message(Integer driverId, Integer routeId) {
+	public Message(String driverId, Integer routeId) {
 		m_driverId = driverId;
 		m_routeId = routeId;
 	}
 
-	public Integer getDriverId() {
+	public String getDriverId() {
 		return m_driverId;
 	}
 
-	public void setDriver_id(Integer driverId) {
+	public void setDriverId(String driverId) {
 		this.m_driverId = driverId;
 	}
 
@@ -33,7 +33,7 @@ public class Message implements Serializable {
 		this.m_routeId = routeId;
 	}
 
-	private Integer m_driverId = -1;
+	String m_driverId = "";
 
 	private Integer m_routeId = -1;
 }

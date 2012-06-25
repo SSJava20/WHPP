@@ -31,4 +31,10 @@ public interface WorktimeFacadeLocal {
 
 	int count();
 
+	public java.util.List<org.courses.whpp.entity.Worktime> findOpenedByEmployeeId(org.courses.whpp.entity.Employee EmployeeId);
+
+	public void logIn(java.lang.Integer EmployeeId);
+
+	public void logOut(java.lang.Integer EmployeeId);
+
 }

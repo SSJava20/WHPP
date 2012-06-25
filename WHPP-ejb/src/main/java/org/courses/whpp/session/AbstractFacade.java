@@ -38,7 +38,10 @@ public abstract class AbstractFacade<T> {
 
 	public T find(Object id) {
 		T t = getEntityManager().find(entityClass, id);
-		getEntityManager().refresh(t);
+		if (t != null) {
+			getEntityManager().refresh(t);
+		}
+
 		return t;
 	}
 

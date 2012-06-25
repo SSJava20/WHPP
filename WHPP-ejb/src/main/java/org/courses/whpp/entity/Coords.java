@@ -71,7 +71,7 @@ public class Coords implements Serializable {
 		this.id = id;
 	}
 
-	public Coords(Integer id, int latitude, int longitude, String address) {
+	public Coords(Integer id, double latitude, double longitude, String address) {
 		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;
